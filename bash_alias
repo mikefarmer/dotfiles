@@ -6,7 +6,7 @@ alias la='ls -a'
 alias camp-acisco='ssh mfarmer@store.acisco.com'
 
 #shortcut editors
-alias vi='~/tmp/vim_custom/vim'
+alias vi='~/tmp/vim_custom/bin/vim'
 alias vim='vi'
 
 # Open in existing vim
