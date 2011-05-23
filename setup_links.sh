@@ -16,4 +16,8 @@ cp ~/tmp/dotfiles/default_bash ~/.default_bash
 git submodule init
 git submodule update
 
+cd vim/bundle/command-t/ruby/command-t
+ruby extconf.rb
+make
+
 install_vim.sh
