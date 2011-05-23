@@ -5,4 +5,5 @@ cd vim73
 configure ./configure --enable-rubyinterp --prefix=$HOME/tmp/custom_vim
 make && make install
 rm -rf vim73
-rm -r vim-7.3.tar.bz2
+rm vim-7.3.tar.bz2
+cd ~/tmp/dotfiles

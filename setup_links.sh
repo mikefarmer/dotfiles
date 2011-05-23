@@ -16,9 +16,4 @@ cp ~/tmp/dotfiles/default_bash ~/.default_bash
 git submodule init
 git submodule update
 
-cd ~/tmp
-wget ftp://ftp.vim.org/pub/vim/unix/vim-7.3.tar.bz2
-tar -jxvf vim-7.3.tar.bz2
-cd vim73
-configure ./configure --enable-rubyinterp --prefix=$HOME/tmp/custom_vim
-make && make install
+install_vim.sh
