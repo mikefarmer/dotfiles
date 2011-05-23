@@ -1,0 +1,7 @@
+[user]
+	name = Mike Farmer
+[color]
+	status = auto
+	branch = auto
+[merge]
+	tool = mvimdiff
