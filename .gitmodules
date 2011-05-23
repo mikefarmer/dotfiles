@@ -18,7 +18,7 @@
 	url = http://github.com/sjl/gundo.vim.git
 [submodule "vim/bundle/krl"]
 	path = vim/bundle/krl
-	url = git@github.com:kynetx/krl-vim-plugin.git
+	url = https://mikefarmer@github.com/mikefarmer/krl-vim-plugin.git
 [submodule "vim/bundle/lusty"]
 	path = vim/bundle/lusty
 	url = https://github.com/sjbach/lusty.git
