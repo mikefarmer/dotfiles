@@ -112,7 +112,11 @@ map <Leader>t :NERDTree <Enter>
 map <Leader>T :NERDTree 
 
 " NERDCommenter Settings
-map <D-/> <plug>NERDCommenterToggle
+if has("gui_running")
+  map <D-/> <plug>NERDCommenterToggle
+else
+  map <leader>/  <plug>NERDCommenterToggle
+end
 
 " CommandT Settings
 map <Leader>f :CommandT <CR>
