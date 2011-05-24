@@ -45,7 +45,7 @@ rvm_info ()
 git_info ()
 {
   git_loc=$(which git)
-  if [ ${git_loc:''} != '' ]
+  if [ ${git_loc:-''} != '' ]
   then
     if [ $(parse_git_branch) ]
     then

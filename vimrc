@@ -116,8 +116,9 @@ map <D-/> <plug>NERDCommenterToggle
 
 " CommandT Settings
 map <Leader>f :CommandT <CR>
-let g:CommandTMaxHeight=10
 map <leader>F :CommandTFlush <CR> :CommandT<CR>
+let g:CommandTMaxHeight=10
+let g:CommandTCancelMap=['<ESC>','<C-c>'] 
 
 " Map ,V to reload the vimrc for that file
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
