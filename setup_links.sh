@@ -19,5 +19,6 @@ git submodule update
 cd vim/bundle/command-t/ruby/command-t
 ruby extconf.rb
 make
+cd ~/tmp/dotfiles
 
 ./install_vim.sh
