@@ -60,7 +60,7 @@ git_info ()
 
 if [ $CUSTOM_PROMPT == "YES" ]
 then
-  PS1="\n-- \w \$(git_info)\$(rvm_info)-- \n>> " 
+  PS1="\n-- \h:\W \$(git_info)\$(rvm_info)-- \n>> " 
 fi
 
 export CLICOLOR=1
