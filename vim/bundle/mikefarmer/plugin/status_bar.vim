@@ -9,18 +9,18 @@ set statusline=%t%m%r%h%w\ POS=%l,%v\ of\ %L\ %y
 
 
 "Put the RVM Info in the Status Line
-function! RvmStatusLine()
-    if ! exists('g:rvm_prompt')
-        let g:rvm_prompt = system("~/.rvm/bin/rvm-prompt v g")
-        let g:rvm_prompt = substitute(g:rvm_prompt, '\n', '', 'g')
-    endif
-    return '['.g:rvm_prompt.']'
-endfunction
+"function! RvmStatusLine()
+    "if ! exists('g:rvm_prompt')
+        "let g:rvm_prompt = system("~/.rvm/bin/rvm-prompt v g")
+        "let g:rvm_prompt = substitute(g:rvm_prompt, '\n', '', 'g')
+    "endif
+    "return '['.g:rvm_prompt.']'
+"endfunction
 
 
 
 
 set statusline+=%{fugitive#statusline()}
-set statusline+=\ %{RvmStatusLine()}
+"set statusline+=\ %{RvmStatusLine()}
 set laststatus=2
 
