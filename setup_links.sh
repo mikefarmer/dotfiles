@@ -22,3 +22,5 @@ make
 cd ~/tmp/dotfiles
 
 ./install_vim.sh
+
+. ~/.bashrc
