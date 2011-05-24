@@ -58,7 +58,7 @@ git_info ()
   fi
 }
 
-if [ $CUSTOM_PROMPT == "YES" ]
+if [ ${CUSTOM_PROMPT:-"YES"} == "YES" ]
 then
   PS1="\n-- \h:\W \$(git_info)\$(rvm_info)-- \n>> " 
 fi
