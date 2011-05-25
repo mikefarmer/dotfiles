@@ -11,7 +11,7 @@ ln -s ~/tmp/dotfiles/vimrc ~/.vimrc
 mv ~/.vim ~/.vim_original
 ln -s ~/tmp/dotfiles/vim ~/.vim
 
-cp ~/tmp/dotfiles/default_bash ~/.default_bash
+cp ~/tmp/dotfiles/env_override ~/.env_override
 
 git submodule init
 git submodule update

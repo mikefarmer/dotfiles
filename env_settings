@@ -1,0 +1,6 @@
+# This is some initial configuration for your environment
+
+export ON_MY_MAC='NO'
+export CUSTOM_PROMPT='YES'
+export DOTFILES=~/tmp/dotfiles
+

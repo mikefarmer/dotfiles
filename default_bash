@@ -1,8 +1,0 @@
-# This is a holding place for any additional 
-# bash environment that you need to setup
-# This file is loaded at the end of all other setup so
-# you can use it to override any other settings 
-
-export ON_MY_MAC='NO'
-export CUSTOM_PROMPT='YES'
-export DOTFILES=~/tmp/dotfiles

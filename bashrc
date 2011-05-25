@@ -1,3 +1,4 @@
-. ~/tmp/dotfiles/bash_env
-. ~/tmp/dotfiles/bash_alias
-. ~/tmp/dotfiles/default_bash
+. $DOTFILES/env_settings
+. $DOTFILES/bash_env
+. $DOTFILES/bash_alias
+. ~/.env_override
