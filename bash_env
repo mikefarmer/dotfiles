@@ -9,7 +9,7 @@ parse_git_branch ()
   then
     gitver=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
   else
-    return 0
+    gitver="no-branch"
   fi
   echo -e $gitver
 }
@@ -47,7 +47,7 @@ git_info ()
   git_loc=$(which git)
   if [ ${git_loc:-''} != '' ]
   then
-    if [ $(parse_git_branch) ]
+    if [ $(parse_git_branch) != "no-branch" ]
     then
       echo -ne "[ $(branch_color)$(parse_git_branch)${c_sgr0} ] " 
     else
