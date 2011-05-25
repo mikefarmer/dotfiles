@@ -52,6 +52,7 @@ else
   ln -s ~/tmp/dotfiles/vim ~/.vim
 fi
 
+cp ~/tmp/dotfiles/env_settings ~/.env_settings
 cp ~/tmp/dotfiles/env_override ~/.env_override
 
 git submodule init
@@ -61,7 +62,5 @@ cd vim/bundle/command-t/ruby/command-t
 ruby extconf.rb
 make
 cd ~/tmp/dotfiles
-
-./install_vim.sh
 
 . ~/.bashrc
