@@ -6,6 +6,3 @@ term xterm-256color
 
 unsetenv SSH_AUTH_SOCK
 setenv SSH_AUTH_SOCK "$HOME/.screen/ssh-auth-sock.$HOSTNAME"
-
-. ~/.bashrc
-
