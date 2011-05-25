@@ -1,4 +1,5 @@
 if [ -f ~/.bashrc_env_backup ]
+then
   echo "skipping bashrc..."
 else
   mv ~/.bashrc ~/.bashrc_env_backup
@@ -7,6 +8,7 @@ else
 fi
 
 if [ -f ~/.gemrc_env_backup ]
+then
   echo "skipping gemrc..."
 else
   mv ~/.gemrc ~/.gemrc_env_backup
@@ -15,6 +17,7 @@ else
 fi
 
 if [ -f ~/.gitconfig_env_backup ]
+then
   echo "skipping gitconfig..."
 else
   mv ~/.gitconfig ~/.gitconfig_env_backup
@@ -23,6 +26,7 @@ else
 fi
 
 if [ -f ~/.screenrc_env_backup ]
+then
   echo "skipping screenrc..."
 else
   mv ~/.screenrc ~/.screenrc_env_backup
@@ -31,6 +35,7 @@ else
 fi
 
 if [ -f ~/.vimrc_env_backup ]
+then
   echo "skipping vimrc..."
 else
   mv ~/.vimrc ~/.vimrc_env_backup
@@ -39,6 +44,7 @@ else
 fi
 
 if [ -f ~/.vim_env_backup ]
+then
   echo "skipping vim..."
 else
   mv ~/.vim ~/.vim_env_backup
