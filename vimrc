@@ -144,6 +144,10 @@ if has("autocmd")
   " some trickery to aid snipmate in providing snips to appropriate files
   au BufRead,BufNewFile *.erb set filetype=eruby.html
   au BufRead,BufNewFile *.js set filetype=javascript.javascript-jquery
+
+  " set fugitive buffers to auto delete
+  autocmd BufReadPost fugitive://* set bufhidden=delete
+  
 endif
 
 " some quick filetype switch mappings
@@ -163,5 +167,5 @@ nnoremap <leader>z :GundoToggle<CR>
 nmap <leader>A :Ack -a <c-r><c-w>
 vmap <leader>A :<c-u>Ack -a <c-r>*
 
-" Ignore xml files in lists
-":set wildignore+=*.xml,*.jpg
+" Ignore images files in lists
+:set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg
