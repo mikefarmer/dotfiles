@@ -92,6 +92,9 @@ set background=dark
 colorscheme solarized
 let g:solarized_visibility = 'low'
 
+" Set gp to select the last paste
+" http://vim.wikia.com/wiki/Selecting_your_pasted_text
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Set the Leader
 let mapleader = ","
