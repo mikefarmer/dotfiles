@@ -52,6 +52,15 @@ else
   ln -s ~/tmp/dotfiles/vim ~/.vim
 fi
 
+if [ -f ~/.psqlrc_backup ]
+then
+  echo "skipping psqlrc..."
+else
+  mv ~/.psqlrc ~/.psqlrc_backup
+  echo "Linking psqlrc"
+  ln -s ~/tmp/dotfiles/psqlrc ~/.psqlrc
+fi
+
 cp ~/tmp/dotfiles/env_settings ~/.env_settings
 cp ~/tmp/dotfiles/env_override ~/.env_override
 
