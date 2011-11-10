@@ -2,8 +2,6 @@
 alias ll='ls -lh'
 alias la='ls -a'
 
-# camps
-alias camp-acisco='ssh mfarmer@store.acisco.com'
 
 #shortcut editors
 alias vi='~/tmp/custom_vim/bin/vim'
@@ -12,15 +10,14 @@ alias vim='vi'
 # Open in existing vim
 alias v='vi --remote-silent'
 
-# Vimdiff
-alias mvimdiff='vi -d'
-alias vimdiff='vi -d'
-
-# alias for gems
-alias gi="sudo gem install --no-ri --no-rdoc"
-
 # Git aliases
 alias gpushom='git push origin master'
 alias gpullom='git pull origin master'
 alias gpush='git push'
 alias gpull='git pull'
+
+# rails specific
+alias reload-db-test='rake db:drop RAILS_ENV=test && rake db:bootstrap RAILS_ENV=test'
+alias reload-db='rake db:drop && rake db:bootstrap'
+alias be='bundle exec'
+
