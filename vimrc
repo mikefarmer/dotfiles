@@ -3,7 +3,6 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 set number
-" set autoindent
 set smartindent
 set smarttab
 set paste
@@ -15,7 +14,7 @@ set smartcase   " Except when the search term has an uppercase char
 
 set hls         " Highlight Search
 set matchtime=4  " ... for .4 seconds
-nnoremap <silent> <esc> :noh<return><esc> " turn unhighlight when I press esc
+nnoremap <silent> <F1> :noh<return><esc> " turn unhighlight when I press F1
 
 syntax on
 filetype on
@@ -45,6 +44,7 @@ set wildmode=longest:full,list:full
 "            +--------------- Complete longest prefix, use wildmenu
 
 " Buffers, Tabs, Windows 
+
 
 set hidden            " Allow changing buffers without saving
 set switchbuf=usetab  " Switch to existing window when switching buffers
