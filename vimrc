@@ -1,8 +1,8 @@
 " load all plugins
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+call pathogen#infect()
 
 set number
+set autoindent
 set smartindent
 set smarttab
 set paste
@@ -53,8 +53,6 @@ set splitbelow        " When splitting horizontally, split below
 set scrolloff=8       " Lines visible above/below cursor when scrolling
 set sidescrolloff=5   " Lines visible left/right of cursor when scrolling
 
-
-
 " Remove Beeping
 set noerrorbells
 set visualbell
@@ -86,7 +84,6 @@ inoremap <c-space> <c-x><c-o>
 " Edit a file in the same directory as current file
 nmap <leader>e :e <c-r>=expand('%:h').'/'<cr>
 
-
 set guifont=Menlo:h15.00
 set background=dark
 colorscheme solarized
@@ -99,14 +96,22 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " Set the Leader
 let mapleader = ","
 
+" Quickly save all buffers
+map <leader>s :wa<cr>
+" close the window
+map <leader>w :q<cr>
+
+"some gui specific settings
+if has("gui_running")
+  " Auto Save on lost focus
+  "au FocusLost * :wa
+
+endif
+  
+
 " Lusty Explorer Settings
 map <Leader>r :LustyFilesystemExplorerFromHere <Enter>
-map <Leader>g :LustyBufferExplorer <Enter>
 let g:LustyJugglerSuppressRubyWarning = 1
-
-" Some Surround helpers
-map <D-"> ysiw" 
-map <D-'> ysiw'
 
 
 " NERDTree Settings
@@ -115,11 +120,15 @@ map <Leader>t :NERDTree <Enter>
 map <Leader>T :NERDTree 
 
 " NERDCommenter Settings
-if has("gui_running")
-  map <D-/> <plug>NERDCommenterToggle
-else
-  map <leader>/  <plug>NERDCommenterToggle
-end
+map <c-\> <plug>NERDCommenterToggle
+
+"if has("gui_running")
+  ""map <D-/> <plug>NERDCommenterToggle
+"else
+  ""map <leader>/  <plug>NERDCommenterToggle
+"end
+
+
 
 " CommandT Settings
 map <Leader>f :CommandT <CR>
@@ -129,15 +138,6 @@ let g:CommandTCancelMap=['<ESC>','<C-c>']
 
 " Map ,V to reload the vimrc for that file
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-
-
-" this will give you the typical Mac OS X shift select capability
-"if has("gui_macvim")
-"  let macvim_hig_shift_movement = 1
-"endif
-"
-" Auto Save on lost focus
-au FocusLost * :wa
 
 
 " some autocmd stuff :)
@@ -155,13 +155,14 @@ endif
 
 " some quick filetype switch mappings
 nmap <leader>h :set filetype=html<cr>
+nmap <leader>hh :set filetype=haml<cr>
 nmap <leader>j :set filetype=javascript.javascript-jquery<cr>
 nmap <leader>e :set filetype=eruby.html<cr>
+nmap <leader>m :set filetype=markdown<cr>
 
 
 " Reload all snipmate snippets
 nmap <silent> <leader>rr :call ReloadAllSnippets()<cr>
-
 
 " map for undo history
 nnoremap <leader>z :GundoToggle<CR>
@@ -172,3 +173,5 @@ vmap <leader>A :<c-u>Ack -a <c-r>*
 
 " Ignore images files in lists
 :set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg
+
+
