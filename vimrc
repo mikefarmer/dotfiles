@@ -1,12 +1,14 @@
+set nocompatible
+
 " load all plugins
 call pathogen#infect()
+syntax on
+filetype plugin indent on 
 
 set number
 set autoindent
 set smartindent
 set smarttab
-set paste
-set nocompatible
 set hidden
 
 set ignorecase  " Ignore case in search
@@ -16,37 +18,31 @@ set hls         " Highlight Search
 set matchtime=4  " ... for .4 seconds
 nnoremap <silent> <F1> :noh<return><esc> " turn unhighlight when I press F1
 
-syntax on
-filetype on
-filetype indent on
-filetype plugin on 
-
 set noswf
 set nowrap
 set spell
 
 set ts=2 sts=2 sw=2 expandtab
 command! -nargs=* Wrap set wrap linebreak nolist
-
-" Menus, Completion
-
-set infercase  " Try to adjust insert completions for case
-set completeopt=longest,menu,menuone
-"               |       |    |
-"               |       |    +-- Show popup even with one match
-"               |       +------- Use popup menu with completions
-"               +--------------- Insert longest completion match
-
-set wildmenu  " Enable wildmenu for completion
-set wildmode=longest:full,list:full
-"            |            |
-"            |            +-- List matches, complete first match
-"            +--------------- Complete longest prefix, use wildmenu
-
-" Buffers, Tabs, Windows 
-
-
-set hidden            " Allow changing buffers without saving
+"
+"" Menus, Completion
+"
+"set infercase  " Try to adjust insert completions for case
+"set completeopt=longest,menu,menuone
+""               |       |    |
+""               |       |    +-- Show popup even with one match
+""               |       +------- Use popup menu with completions
+""               +--------------- Insert longest completion match
+"
+"set wildmenu  " Enable wildmenu for completion
+"set wildmode=longest:full,list:full
+""            |            |
+""            |            +-- List matches, complete first match
+""            +--------------- Complete longest prefix, use wildmenu
+"
+"" Buffers, Tabs, Windows 
+"
+"
 set switchbuf=usetab  " Switch to existing window when switching buffers
 set splitright        " When splitting vertically, split to the right
 set splitbelow        " When splitting horizontally, split below
@@ -58,6 +54,8 @@ set noerrorbells
 set visualbell
 set t_vb=
 
+" fix the backspace to work at any location
+set backspace=indent,eol,start
 
 " map for changing pwd to current file's dir
 map ,cd :cd %:p:h<CR>
@@ -96,7 +94,7 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " Set the Leader
 let mapleader = ","
 
-" Quickly save all buffers
+" Quickly save all buffers. This is temporary until I'm ready to relinquish muscle training
 map <leader>s :wa<cr>
 " close the window
 map <leader>w :q<cr>
@@ -173,5 +171,3 @@ vmap <leader>A :<c-u>Ack -a <c-r>*
 
 " Ignore images files in lists
 :set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg
-
-
