@@ -54,9 +54,6 @@ set noerrorbells
 set visualbell
 set t_vb=
 
-" fix the backspace to work at any location
-set backspace=indent,eol,start
-
 " map for changing pwd to current file's dir
 map ,cd :cd %:p:h<CR>
 
@@ -69,6 +66,10 @@ map <C-l> <C-w>l
 " better navigation
 nnoremap j gj
 nnoremap k gk
+
+" better backspace
+set backspace=indent,eol,start " make backspace work from anywhere
+nmap <bs> hx " make backspace work in normal mode as expected
 
 
 " Switch to previous buffer
