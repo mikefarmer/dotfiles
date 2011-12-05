@@ -1,57 +1,76 @@
 [submodule "vim/bundle/nerd_commenter"]
 	path = vim/bundle/nerd_commenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+  igonre = dirty
 [submodule "vim/bundle/ack"]
 	path = vim/bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
+  igonre = dirty
 [submodule "vim/bundle/command-t"]
 	path = vim/bundle/command-t
 	url = git://git.wincent.com/command-t.git
+  igonre = dirty
 [submodule "vim/bundle/endwise"]
 	path = vim/bundle/endwise
 	url = https://github.com/tpope/vim-endwise.git
+  igonre = dirty
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+  igonre = dirty
 [submodule "vim/bundle/gundo"]
 	path = vim/bundle/gundo
 	url = http://github.com/sjl/gundo.vim.git
+  igonre = dirty
 [submodule "vim/bundle/krl"]
 	path = vim/bundle/krl
 	url = https://github.com/mikefarmer/krl-vim-plugin.git
+  igonre = dirty
 [submodule "vim/bundle/lusty"]
 	path = vim/bundle/lusty
 	url = https://github.com/sjbach/lusty.git
+  igonre = dirty
 [submodule "vim/bundle/snipmate"]
 	path = vim/bundle/snipmate
 	url = https://github.com/mikefarmer/snipmate.vim.git
+  igonre = dirty
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
+  igonre = dirty
 [submodule "vim/bundle/ragtag"]
 	path = vim/bundle/ragtag
 	url = https://github.com/tpope/vim-ragtag.git
+  igonre = dirty
 [submodule "vim/bundle/rails"]
 	path = vim/bundle/rails
 	url = https://github.com/tpope/vim-rails.git
+  igonre = dirty
 [submodule "vim/bundle/surround"]
 	path = vim/bundle/surround
 	url = https://github.com/tpope/vim-surround.git
+  igonre = dirty
 [submodule "vim-unimpaired"]
 	path = vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+  igonre = dirty
 [submodule "vim/bundle/unimpaired"]
 	path = vim/bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+  igonre = dirty
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+  igonre = dirty
 [submodule "vim/snippets"]
 	path = vim/snippets
 	url = https://github.com/mikefarmer/snipmate-snippets.git
+  igonre = dirty
 [submodule "vim/bundle/vim-markdown"]
 	path = vim/bundle/vim-markdown
 	url = https://github.com/tpope/vim-markdown.git
+  igonre = dirty
 [submodule "vim/bundle/vim-autoclose"]
 	path = vim/bundle/vim-autoclose
 	url = git@github.com:mikefarmer/vim-autoclose.git
+  igonre = dirty
