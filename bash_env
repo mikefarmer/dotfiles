@@ -37,6 +37,10 @@ rvm_info ()
   then
     p=$(~/.rvm/bin/rvm-prompt v g s)
     echo -ne "[ ${p} ] "
+  elif [ -f /usr/local/rvm/bin/rvm-prompt ]
+  then
+    p=$(/usr/local/rvm/bin/rvm-prompt  v g s)
+    echo -ne "[ ${p} ] "
   else
     return 0 
   fi  
