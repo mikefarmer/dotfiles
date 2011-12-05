@@ -71,6 +71,12 @@ nnoremap k gk
 set backspace=indent,eol,start " make backspace work from anywhere
 nmap <bs> hx " make backspace work in normal mode as expected
 
+" better arrow keys
+"set t_ku= OA
+"set t_kd= OB
+"set t_kr= OC
+"set t_kl= OD
+
 
 " Switch to previous buffer
 nmap <silent> g<space> :b#<cr>
