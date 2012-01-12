@@ -1,4 +1,6 @@
 set nocompatible
+" Always make sure you are running in 256 color mode
+set t_Co=256
 
 " load all plugins
 call pathogen#infect()
