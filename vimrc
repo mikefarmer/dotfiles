@@ -88,10 +88,8 @@ inoremap <c-n>     <c-x><c-n>
 inoremap <c-f>     <c-x><c-f>
 inoremap <c-space> <c-x><c-o>
 
-" Edit a file in the same directory as current file
-nmap <leader>e :e <c-r>=expand('%:h').'/'<cr>
 
-set guifont=Menlo:h15.00
+set guifont=Menlo:h14.00
 set background=dark
 colorscheme solarized
 let g:solarized_visibility = 'low'
@@ -102,6 +100,9 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Set the Leader
 let mapleader = ","
+
+" Edit a file in the same directory as current file
+nmap <leader>ee :e <c-r>=expand('%:h').'/'<cr>
 
 " Quickly save all buffers. This is temporary until I'm ready to relinquish muscle training
 map <leader>s :wa<cr>

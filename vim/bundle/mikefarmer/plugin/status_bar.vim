@@ -1,4 +1,4 @@
-set statusline=%t%m%r%h%w\ POS=%l,%v\ of\ %L\ %y
+set statusline=%f%m%r%h%w\ POS=%l,%v\ of\ %L\ %y
 " This will add the Syntax Item to the status line. Use this for building a theme
  "function! SyntaxItem()
    "return synIDattr(synID(line("."),col("."),1),"name")

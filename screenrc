@@ -2,6 +2,7 @@ startup_message off
 caption always " %H |%{W} %-w%{+b}%n %t%{-b}%+w"
 
 term xterm-256color
+defscrollback 10000
 
 
 unsetenv SSH_AUTH_SOCK
