@@ -16,9 +16,9 @@ set hidden
 set ignorecase  " Ignore case in search
 set smartcase   " Except when the search term has an uppercase char
 
-set hls         " Highlight Search
-set matchtime=4  " ... for .4 seconds
-nnoremap <silent> <F1> :noh<return><esc> " turn unhighlight when I press F1
+set nohlsearch         " Highlight Search
+"set matchtime=4  " ... for .4 seconds
+"nnoremap <silent> <F1> :noh<return><esc> " turn unhighlight when I press F1
 
 set noswf
 set nowrap
@@ -64,6 +64,11 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" better tab navigation
+map <c-[> :tabprevious<CR>
+map <c-]> :tabnext<CR>
+map <c-n> :tabnew<CR>
  
 " better navigation
 nnoremap j gj
@@ -104,8 +109,6 @@ let mapleader = ","
 " Edit a file in the same directory as current file
 nmap <leader>ee :e <c-r>=expand('%:h').'/'<cr>
 
-" Quickly save all buffers. This is temporary until I'm ready to relinquish muscle training
-map <leader>s :wa<cr>
 " close the window
 map <leader>w :q<cr>
 
