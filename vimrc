@@ -57,7 +57,7 @@ set visualbell
 set t_vb=
 
 " map for changing pwd to current file's dir
-map ,cd :cd %:p:h<CR>
+map <leader>cd :cd %:p:h<CR>
 
 " Quick jumping between splits
 map <C-h> <C-w>h
@@ -66,9 +66,9 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " better tab navigation
-map <c-[> :tabprevious<CR>
-map <c-]> :tabnext<CR>
-map <c-n> :tabnew<CR>
+nmap <leader>q :tabprevious<CR>
+nmap <leader>w :tabnext<CR>
+nmap <leader>n :tabnew<CR>
  
 " better navigation
 nnoremap j gj
@@ -127,6 +127,7 @@ let g:LustyJugglerSuppressRubyWarning = 1
 
 " NERDTree Settings
 let NERDTreeWinPos="right"
+let g:NERDTreeDirArrows=0
 map <Leader>t :NERDTree <Enter>
 map <Leader>T :NERDTree 
 

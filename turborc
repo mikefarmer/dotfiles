@@ -1,0 +1,7 @@
+# ls Aliases
+alias ll='ls -lh'
+alias la='ls -a'
+
+#shortcut editors
+alias vi='~/.turbo/custom_vim/bin/vim -u ~/.turbo/dotfiles/vimrc'
+alias vim='vi'
