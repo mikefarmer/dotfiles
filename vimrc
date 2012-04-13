@@ -68,6 +68,8 @@ map <C-l> <C-w>l
 " better tab navigation
 nmap <silent> [g :tabprevious<CR>
 nmap <silent> ]g :tabnext<CR>
+nmap <silent> [G :tabrewind<CR>
+nmap <silent> ]G :tablast<CR>
 nmap <silent> tt :tabnew<CR>
  
 " better navigation
