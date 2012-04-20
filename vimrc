@@ -130,6 +130,7 @@ let g:LustyJugglerSuppressRubyWarning = 1
 " NERDTree Settings
 let NERDTreeWinPos="right"
 let g:NERDTreeDirArrows=0
+let g:NERDTreeWinSize = 50
 map <Leader>t :NERDTree <Enter>
 map <Leader>T :NERDTree 
 
