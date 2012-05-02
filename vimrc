@@ -56,6 +56,10 @@ set noerrorbells
 set visualbell
 set t_vb=
 
+
+" Set the Leader
+let mapleader = ","
+
 " map for changing pwd to current file's dir
 map <leader>cd :cd %:p:h<CR>
 
@@ -96,7 +100,7 @@ inoremap <c-f>     <c-x><c-f>
 inoremap <c-space> <c-x><c-o>
 
 
-set guifont=Menlo:h14.00
+set guifont=Menlo:h12.00
 set background=dark
 colorscheme solarized
 let g:solarized_visibility = 'low'
@@ -105,8 +109,6 @@ let g:solarized_visibility = 'low'
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" Set the Leader
-let mapleader = ","
 
 " Edit a file in the same directory as current file
 nmap <leader>ee :e <c-r>=expand('%:h').'/'<cr>
