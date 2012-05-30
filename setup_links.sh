@@ -34,6 +34,15 @@ else
   ln -s ~/tmp/dotfiles/screenrc ~/.screenrc
 fi
 
+if [ -f ~/.tmux_env_backup ]
+then
+  echo "skipping tmux..."
+else
+  mv ~/.tmux.conf ~/.tmux_env_backup
+  echo "Linking tmux.conf"
+  ln -s ~/tmp/dotfiles/tmux.conf ~/.tmux.conf
+fi
+
 if [ -f ~/.vimrc_env_backup ]
 then
   echo "skipping vimrc..."
