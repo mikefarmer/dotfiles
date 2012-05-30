@@ -16,7 +16,7 @@ set hidden
 set ignorecase  " Ignore case in search
 set smartcase   " Except when the search term has an uppercase char
 
-set nohlsearch         " Highlight Search
+set hlsearch         " Highlight Search
 "set matchtime=4  " ... for .4 seconds
 "nnoremap <silent> <F1> :noh<return><esc> " turn unhighlight when I press F1
 
@@ -30,14 +30,14 @@ command! -nargs=* Wrap set wrap linebreak nolist
 "" Menus, Completion
 "
 "set infercase  " Try to adjust insert completions for case
-"set completeopt=longest,menu,menuone
+set completeopt=longest,menu,menuone
 ""               |       |    |
 ""               |       |    +-- Show popup even with one match
 ""               |       +------- Use popup menu with completions
 ""               +--------------- Insert longest completion match
 "
-"set wildmenu  " Enable wildmenu for completion
-"set wildmode=longest:full,list:full
+set wildmenu  " Enable wildmenu for completion
+set wildmode=longest:full,list:full
 ""            |            |
 ""            |            +-- List matches, complete first match
 ""            +--------------- Complete longest prefix, use wildmenu
@@ -45,6 +45,9 @@ command! -nargs=* Wrap set wrap linebreak nolist
 "" Buffers, Tabs, Windows 
 "
 "
+set complete=.,w,b,t
+
+
 set switchbuf=usetab  " Switch to existing window when switching buffers
 set splitright        " When splitting vertically, split to the right
 set splitbelow        " When splitting horizontally, split below
@@ -80,9 +83,56 @@ nmap <silent> tt :tabnew<CR>
 nnoremap j gj
 nnoremap k gk
 
-" better backspace
-set backspace=indent,eol,start " make backspace work from anywhere
-nmap <bs> hx " make backspace work in normal mode as expected
+
+" RENAME CURRENT FILE
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>n :call RenameFile()<cr>
+
+" paste from system clipboard
+nmap <leader>p "*p
+
+
+
+" Insert a hash rocket with <c-l>
+imap <c-l> <space>=><space>
+" Can't be bothered to understand ESC vs <c-c> in insert mode
+imap <c-c> <esc>
+" Clear the search buffer when hitting return
+function! MapCR()
+  nnoremap <cr> :nohlsearch<cr>
+endfunction
+call MapCR()
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
+
+
+" better backspace 
+" make backspace work from anywhere
+set backspace=indent,eol,start
+" make backspace work in normal mode as expected
+nmap <bs> i<bs>
 
 " better arrow keys
 "set t_ku= OA
@@ -148,10 +198,24 @@ map <c-\> <plug>NERDCommenterToggle
 
 
 " CommandT Settings
-map <Leader>f :CommandT <CR>
-map <leader>F :CommandTFlush <CR> :CommandT<CR>
 let g:CommandTMaxHeight=10
 let g:CommandTCancelMap=['<ESC>','<C-c>'] 
+
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
+map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets/sass<cr>
+map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
+map <leader>gg :topleft 100 :split Gemfile<cr>
+map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
+
+
+
 
 " Powerline settings
 let g:Powerline_symbols = 'fancy'
@@ -163,7 +227,7 @@ map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloa
 " some autocmd stuff :)
 if has("autocmd")
   " automatically reload vimrc when saved.
-  au bufwritepost .vimrc source $MYVIMRC
+  "au bufwritepost .vimrc source $MYVIMRC
   " some trickery to aid snipmate in providing snips to appropriate files
   au BufRead,BufNewFile *.erb set filetype=eruby.html
   au BufRead,BufNewFile *.js set filetype=javascript.javascript-jquery
