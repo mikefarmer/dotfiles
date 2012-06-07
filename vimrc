@@ -30,7 +30,7 @@ command! -nargs=* Wrap set wrap linebreak nolist
 "" Menus, Completion
 "
 "set infercase  " Try to adjust insert completions for case
-set completeopt=longest,menu,menuone
+set completeopt=longest,menu  ",menuone
 ""               |       |    |
 ""               |       |    +-- Show popup even with one match
 ""               |       +------- Use popup menu with completions
@@ -231,6 +231,9 @@ if has("autocmd")
   " some trickery to aid snipmate in providing snips to appropriate files
   au BufRead,BufNewFile *.erb set filetype=eruby.html
   au BufRead,BufNewFile *.js set filetype=javascript.javascript-jquery
+  au BufRead,BufNewFile Gemfile set filetype=ruby
+  au BufRead,BufNewFile Capfile set filetype=ruby
+  au BufRead,BufNewFile Guardfile set filetype=ruby
 
   " set fugitive buffers to auto delete
   autocmd BufReadPost fugitive://* set bufhidden=delete
