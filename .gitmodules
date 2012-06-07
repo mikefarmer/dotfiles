@@ -8,7 +8,7 @@
   ignore = dirty
 [submodule "vim/bundle/command-t"]
   path = vim/bundle/command-t
-  url = git://git.wincent.com/command-t.git
+  url = https://github.com/wincent/Command-T.git
   ignore = dirty
 [submodule "vim/bundle/endwise"]
   path = vim/bundle/endwise
