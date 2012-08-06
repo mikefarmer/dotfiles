@@ -25,6 +25,15 @@ else
   ln -s ~/tmp/dotfiles/gitconfig ~/.gitconfig
 fi
 
+if [ -f ~/.githelpers_env_backup ]
+then
+  echo "skipping githelpers..."
+else
+  mv ~/.githelpers ~/.githelpers_env_backup
+  echo "Linking githelpers"
+  ln -s ~/tmp/dotfiles/githelpers ~/.githelpers
+fi
+
 if [ -f ~/.screenrc_env_backup ]
 then
   echo "skipping screenrc..."
