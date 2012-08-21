@@ -216,7 +216,9 @@ map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
 " Only autoclose quotes
-let g:AutoClosePairs = AutoClose#ParsePairs("` \" '")
+map  <leader>" :AutoCloseQuotesOnly<cr>
+map  <leader>"" :AutoCloseOff<cr>
+
 
 
 " Powerline settings
