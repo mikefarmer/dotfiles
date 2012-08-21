@@ -1,6 +1,7 @@
 set nocompatible
 " Always make sure you are running in 256 color mode
 set t_Co=256
+set encoding=utf-8
 
 " load all plugins
 call pathogen#infect()
@@ -18,7 +19,7 @@ set smartcase   " Except when the search term has an uppercase char
 
 set hlsearch         " Highlight Search
 "set matchtime=4  " ... for .4 seconds
-"nnoremap <silent> <F1> :noh<return><esc> " turn unhighlight when I press F1
+:set incsearch " move to that search while typing
 
 set noswf
 set nowrap
@@ -198,7 +199,7 @@ map <c-\> <plug>NERDCommenterToggle
 
 
 " CommandT Settings
-let g:CommandTMaxHeight=10
+let g:CommandTMaxHeight=0
 let g:CommandTCancelMap=['<ESC>','<C-c>'] 
 
 map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
@@ -207,14 +208,15 @@ map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
 map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
 map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
 map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
-map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets/sass<cr>
+map <leader>gs :CommandTFlush<cr>\|:CommandT app/stylesheets<cr>
 map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
 map <leader>gg :topleft 100 :split Gemfile<cr>
 map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
-
+" Only autoclose quotes
+let g:AutoClosePairs = AutoClose#ParsePairs("` \" '")
 
 
 " Powerline settings
@@ -249,7 +251,7 @@ nmap <leader>m :set filetype=markdown<cr>
 
 
 " Reload all snipmate snippets
-nmap <silent> <leader>rr :call ReloadAllSnippets()<cr>
+"nmap <silent> <leader>rr :call ReloadAllSnippets()<cr>
 
 " map for undo history
 nnoremap <leader>z :GundoToggle<CR>
