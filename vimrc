@@ -263,4 +263,5 @@ nmap <leader>A :Ack -a <c-r><c-w>
 vmap <leader>A :<c-u>Ack -a <c-r>*
 
 " Ignore images files in lists
-:set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg
+:set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg,tmp/**,coverage/**
+
