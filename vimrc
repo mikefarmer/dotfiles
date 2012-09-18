@@ -2,6 +2,7 @@ set nocompatible
 " Always make sure you are running in 256 color mode
 set t_Co=256
 set encoding=utf-8
+runtime macros/matchit.vim
 
 " load all plugins
 call pathogen#infect()
