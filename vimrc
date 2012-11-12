@@ -74,12 +74,18 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+"better splits
+nmap <silent> vv :vsp<CR>
+nmap <silent> ss :sp<CR>
+
 " better tab navigation
 nmap <silent> [g :tabprevious<CR>
 nmap <silent> ]g :tabnext<CR>
 nmap <silent> [G :tabrewind<CR>
 nmap <silent> ]G :tablast<CR>
 nmap <silent> tt :tabnew<CR>
+
+
  
 " better navigation
 nnoremap j gj

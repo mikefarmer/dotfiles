@@ -1,6 +1,7 @@
 # ls Aliases
 alias ll='ls -lh'
 alias la='ls -a'
+alias z='zeus'
 
 
 #shortcut editors
