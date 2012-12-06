@@ -3,6 +3,7 @@
 	email = mike.farmer@gmail.com
 [color]
 	status = auto
+  diff = auto
 	branch = auto
 [merge]
 	tool = vimdiff

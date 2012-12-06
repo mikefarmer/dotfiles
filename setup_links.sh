@@ -70,13 +70,22 @@ else
   ln -s ~/tmp/dotfiles/vim ~/.vim
 fi
 
-if [ -f ~/.psqlrc_backup ]
+if [ -f ~/.psqlrc_env_backup ]
 then
   echo "skipping psqlrc..."
 else
-  mv ~/.psqlrc ~/.psqlrc_backup
+  mv ~/.psqlrc ~/.psqlrc_env_backup
   echo "Linking psqlrc"
   ln -s ~/tmp/dotfiles/psqlrc ~/.psqlrc
+fi
+
+if [ -f ~/.zshrc_env_backup ]
+then
+  echo "skipping zshrc..."
+else
+  mv ~/.zshrc ~/.zshrc_env_backup
+  echo "Linking zshrc"
+  ln -s ~/tmp/dotfiles/zshrc ~/.zshrc
 fi
 
 cp ~/tmp/dotfiles/env_settings ~/.env_settings
@@ -90,4 +99,9 @@ ruby extconf.rb
 make
 cd ~/tmp/dotfiles
 
-. ~/.bashrc
+if [ $ZSH_NAME ]
+then
+  . ~/.zshrc
+else
+  . ~/.bashrc
+fi

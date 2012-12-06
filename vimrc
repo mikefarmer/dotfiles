@@ -20,7 +20,7 @@ set smartcase   " Except when the search term has an uppercase char
 
 set hlsearch         " Highlight Search
 "set matchtime=4  " ... for .4 seconds
-:set incsearch " move to that search while typing
+set incsearch " move to that search while typing
 
 set noswf
 set nowrap
@@ -45,8 +45,6 @@ set wildmode=longest:full,list:full
 ""            +--------------- Complete longest prefix, use wildmenu
 "
 "" Buffers, Tabs, Windows 
-"
-"
 set complete=.,w,b,t
 
 
@@ -61,6 +59,8 @@ set noerrorbells
 set visualbell
 set t_vb=
 
+" Faster switching between modes
+set timeoutlen=1000 ttimeoutlen=0
 
 " Set the Leader
 let mapleader = ","
@@ -272,5 +272,5 @@ nmap <leader>A :Ack -a <c-r><c-w>
 vmap <leader>A :<c-u>Ack -a <c-r>*
 
 " Ignore images files in lists
-:set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg,tmp/**,coverage/**
+set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg,tmp/**,coverage/**
 
