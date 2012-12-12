@@ -36,6 +36,8 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:
 export PATH=$PATH:/Users/mikefarmer/Dropbox/Development/Scripts
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
 
 # ls Aliases
 alias la='ls -a'
@@ -60,3 +62,5 @@ alias ep='cd /Users/mikefarmer/Dropbox/endpoint;ll'
 alias dev='cd /Users/mikefarmer/Dropbox/Development;ll'
 
 #if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export EDIT='vim'
+export EDITOR='vim'
