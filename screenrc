@@ -7,3 +7,5 @@ defscrollback 10000
 
 unsetenv SSH_AUTH_SOCK
 setenv SSH_AUTH_SOCK "$HOME/.screen/ssh-auth-sock.$HOSTNAME"
+
+bind ^k eval "scrollback 0" "scrollback 15000"
