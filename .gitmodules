@@ -22,10 +22,6 @@
   path = vim/bundle/gundo
   url = http://github.com/sjl/gundo.vim.git
   ignore = dirty
-[submodule "vim/bundle/krl"]
-  path = vim/bundle/krl
-  url = https://github.com/mikefarmer/krl-vim-plugin.git
-  ignore = dirty
 [submodule "vim/bundle/lusty"]
   path = vim/bundle/lusty
   url = https://github.com/sjbach/lusty.git

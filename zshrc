@@ -38,6 +38,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:
 export PATH=$PATH:/Users/mikefarmer/Dropbox/Development/Scripts
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
+export PATH="$HOME/tmp/dropbox:$PATH"
 
 # ls Aliases
 alias la='ls -a'
@@ -56,11 +57,14 @@ alias reload-db='rake db:drop && rake db:bootstrap'
 alias be='bundle exec'
 
 
-alias do-backup='cd /Volumes/Backup/Ongoing\ Backup/ && ./backup.sh'
-alias ep-vitrue='ssh vitrue-dev'
-alias ep='cd /Users/mikefarmer/Dropbox/endpoint;ll'
-alias dev='cd /Users/mikefarmer/Dropbox/Development;ll'
+alias do-log='tail -f log/development.log | egrep -v "/assets/"'
+#alias do-backup='cd /Volumes/Backup/Ongoing\ Backup/ && ./backup.sh'
+#alias ep-vitrue='ssh vitrue-dev'
+#alias ep='cd /Users/mikefarmer/Dropbox/endpoint;ll'
+#alias dev='cd /Users/mikefarmer/Dropbox/Development;ll'
 
 #if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export EDIT='vim'
 export EDITOR='vim'
+
+

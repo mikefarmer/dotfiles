@@ -205,6 +205,8 @@ map <c-\> <plug>NERDCommenterToggle
   ""map <leader>/  <plug>NERDCommenterToggle
 "end
 
+" Fugitive Shortcut for Gstatus
+map <leader>s :Gstatus<cr>
 
 
 " CommandT Settings
