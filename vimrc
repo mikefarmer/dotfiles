@@ -205,6 +205,8 @@ map <leader>s :Gstatus<cr>
 " CtrlP Mappings
 map <leader>f :CtrlP<cr>
 map <leader>b :CtrlPBuffer<cr>
+" put the result at the top
+let g:ctrlp_match_window_reversed = 0
 
 
 " Only autoclose quotes
