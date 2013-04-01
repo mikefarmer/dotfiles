@@ -64,7 +64,7 @@
   ignore = dirty
 [submodule "vim/bundle/vim-autoclose"]
 	path = vim/bundle/vim-autoclose
-	url = git@github.com:mikefarmer/vim-autoclose.git
+	url = https://github.com/mikefarmer/vim-autoclose.git
   ignore = dirty
 [submodule "vim/bundle/vim-powerline"]
 	path = vim/bundle/vim-powerline
