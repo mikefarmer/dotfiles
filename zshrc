@@ -39,6 +39,7 @@ export PATH=$PATH:/Users/mikefarmer/Dropbox/Development/Scripts
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="$HOME/tmp/dropbox:$PATH"
+eval "$(rbenv init -)"
 
 # ls Aliases
 alias la='ls -a'
