@@ -48,7 +48,7 @@ set wildmode=longest:full,list:full
 set complete=.,w,b,t
 
 
-set switchbuf=usetab  " Switch to existing window when switching buffers
+"set switchbuf=usetab  " Switch to existing window when switching buffers
 set splitright        " When splitting vertically, split to the right
 set splitbelow        " When splitting horizontally, split below
 set scrolloff=8       " Lines visible above/below cursor when scrolling
@@ -150,7 +150,6 @@ nmap <bs> i<bs>
 "set t_kr= OC
 "set t_kl= OD
 
-
 " Switch to previous buffer
 nmap <silent> g<space> :b#<cr>
 
@@ -160,10 +159,12 @@ inoremap <c-f>     <c-x><c-f>
 inoremap <c-space> <c-x><c-o>
 
 
+set nospell
 set guifont=Menlo:h12.00
 set background=dark
-colorscheme solarized
-let g:solarized_visibility = 'low'
+colorscheme seoul256
+"colorscheme solarized
+"let g:solarized_visibility = 'low'
 
 " Set gp to select the last paste
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text
@@ -205,6 +206,7 @@ map <leader>s :Gstatus<cr>
 " CtrlP Mappings
 map <leader>f :CtrlP<cr>
 map <leader>b :CtrlPBuffer<cr>
+map <leader>g :CtrlPTag<cr>
 " put the result at the top
 let g:ctrlp_match_window_reversed = 0
 
@@ -232,6 +234,7 @@ if has("autocmd")
   au BufRead,BufNewFile Gemfile set filetype=ruby
   au BufRead,BufNewFile Capfile set filetype=ruby
   au BufRead,BufNewFile Guardfile set filetype=ruby
+  au BufRead,BufNewFile *.coffee nmap <leader>c :CoffeeCompile<cr>
 
   " set fugitive buffers to auto delete
   autocmd BufReadPost fugitive://* set bufhidden=delete
@@ -246,16 +249,19 @@ nmap <leader>e :set filetype=eruby.html<cr>
 nmap <leader>m :set filetype=markdown<cr>
 
 
-" Reload all snipmate snippets
-"nmap <silent> <leader>rr :call ReloadAllSnippets()<cr>
-
-" map for undo history
-nnoremap <leader>z :GundoToggle<CR>
-
 " Start ack with word under cursor
-nmap <leader>A :Ack -a <c-r><c-w>
-vmap <leader>A :<c-u>Ack -a <c-r>*
+nmap <leader>A :Ack --ruby <c-r><c-w>
+vmap <leader>A :<c-u>Ack --ruby <c-r>*
 
 " Ignore images files in lists
 set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg,tmp/**,coverage/**
 
+" Setup ctags for the project
+nmap <silent> <Leader>rt :!bundle list --paths=true \| xargs ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
+
+" Paste Mode helpers
+nmap pp :set paste<cr>i
+nmap PP :set nopaste<cr>
+
+" Remap Esc
+imap jk <Esc>

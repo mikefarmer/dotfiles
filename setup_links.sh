@@ -1,11 +1,23 @@
-if [ -f ~/.bashrc_env_backup ]
+if [ -f /bin/zsh ]
 then
-  echo "skipping bashrc..."
+  echo "ZSH!"
+  curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+  echo " IF THERE WAS A PROBLEM, YOU MAY HAVE TO RUN: chsh -s /bin/zsh"
 else
-  mv ~/.bashrc ~/.bashrc_env_backup
-  echo "Linking bashrc"
-  ln -s ~/tmp/dotfiles/bashrc ~/.bashrc
+  if [ -f ~/.bashrc_env_backup ]
+  then
+    echo "skipping bashrc..."
+  else
+    mv ~/.bashrc ~/.bashrc_env_backup
+    echo "Linking bashrc"
+    ln -s ~/tmp/dotfiles/bashrc ~/.bashrc
+    cp ~/tmp/dotfiles/env_settings ~/.env_settings
+    cp ~/tmp/dotfiles/env_override ~/.env_override
+  fi
+
 fi
+
+
 
 if [ -f ~/.gemrc_env_backup ]
 then
@@ -88,8 +100,6 @@ else
   ln -s ~/tmp/dotfiles/zshrc ~/.zshrc
 fi
 
-cp ~/tmp/dotfiles/env_settings ~/.env_settings
-cp ~/tmp/dotfiles/env_override ~/.env_override
 
 git submodule init
 git submodule update
