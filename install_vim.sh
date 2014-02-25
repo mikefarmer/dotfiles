@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 cd ~/tmp
 wget ftp://ftp.vim.org/pub/vim/unix/vim-7.3.tar.bz2
 tar -jxvf vim-7.3.tar.bz2
