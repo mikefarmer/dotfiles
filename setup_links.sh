@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 if [ -f /bin/zsh ]
 then
   echo "ZSH!"
@@ -97,18 +100,9 @@ then
 else
   mv ~/.zshrc ~/.zshrc_env_backup
   echo "Linking zshrc"
-  ln -s ~/tmp/dotfiles/zshrc ~/.zshrc
+  ln -s ~/tmp/dotfiles/zshrc_linux ~/.zshrc
 fi
 
 
 git submodule init
 git submodule update
-
-cd ~/tmp/dotfiles
-
-if [ -f /bin/zsh ]
-then
-  . ~/.zshrc
-else
-  . ~/.bashrc
-fi
