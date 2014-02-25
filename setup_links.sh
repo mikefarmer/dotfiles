@@ -1,8 +1,8 @@
 if [ -f /bin/zsh ]
 then
   echo "ZSH!"
-  curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-  echo " IF THERE WAS A PROBLEM, YOU MAY HAVE TO RUN: chsh -s /bin/zsh"
+  # curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+  # echo " IF THERE WAS A PROBLEM, YOU MAY HAVE TO RUN: chsh -s /bin/zsh"
 else
   if [ -f ~/.bashrc_env_backup ]
   then
