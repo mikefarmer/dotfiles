@@ -106,7 +106,7 @@ git submodule update
 
 cd ~/tmp/dotfiles
 
-if [ $ZSH_NAME ]
+if [ -f /bin/zsh ]
 then
   . ~/.zshrc
 else
