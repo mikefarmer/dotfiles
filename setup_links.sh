@@ -133,6 +133,6 @@ else
   ln -s ~/tmp/dotfiles/zshrc_linux ~/.zshrc
 fi
 
-
+cd ~/tmp/dotfiles
 git submodule init
 git submodule update
