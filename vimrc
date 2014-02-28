@@ -162,9 +162,9 @@ inoremap <c-space> <c-x><c-o>
 set nospell
 set guifont=Menlo:h12.00
 set background=dark
-colorscheme seoul256
-"colorscheme solarized
-"let g:solarized_visibility = 'low'
+"colorscheme seoul256
+colorscheme solarized
+let g:solarized_visibility = 'low'
 
 " Set gp to select the last paste
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text
