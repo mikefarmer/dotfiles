@@ -89,3 +89,6 @@
 [submodule "vim/bundle/seoul245.vim"]
 	path = vim/bundle/seoul245.vim
 	url = https://github.com/junegunn/seoul256.vim.git
+[submodule "vim/bundle/vim-airline"]
+	path = vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
