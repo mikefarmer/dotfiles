@@ -228,7 +228,6 @@ map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloa
 if has("autocmd")
   " automatically reload vimrc when saved.
   "au bufwritepost .vimrc source $MYVIMRC
-  " some trickery to aid snipmate in providing snips to appropriate files
   au BufRead,BufNewFile *.erb set filetype=eruby.html
   au BufRead,BufNewFile *.js set filetype=javascript.javascript-jquery
   au BufRead,BufNewFile Gemfile set filetype=ruby
@@ -259,9 +258,7 @@ set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg,tmp/**,coverage/**
 " Setup ctags for the project
 nmap <silent> <Leader>rt :!bundle list --paths=true \| xargs ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
 
-" Paste Mode helpers
-nmap pp :set paste<cr>i
-nmap PP :set nopaste<cr>
-
-" Remap Esc
-imap jk <Esc>
+" Some aliases for things I commonly type
+abbr rla Rails.logger.ap
+abbr rli Rails.logger.info
+abbr rld Rails.logger.debug
