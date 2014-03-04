@@ -7,7 +7,7 @@ runtime macros/matchit.vim
 " load all plugins
 call pathogen#infect()
 syntax on
-filetype plugin indent on 
+filetype plugin indent on
 
 set number
 set autoindent
@@ -44,7 +44,7 @@ set wildmode=longest:full,list:full
 ""            |            +-- List matches, complete first match
 ""            +--------------- Complete longest prefix, use wildmenu
 "
-"" Buffers, Tabs, Windows 
+"" Buffers, Tabs, Windows
 set complete=.,w,b,t
 
 
@@ -53,6 +53,7 @@ set splitright        " When splitting vertically, split to the right
 set splitbelow        " When splitting horizontally, split below
 set scrolloff=8       " Lines visible above/below cursor when scrolling
 set sidescrolloff=5   " Lines visible left/right of cursor when scrolling
+set laststatus=2
 
 " Remove Beeping
 set noerrorbells
@@ -85,8 +86,19 @@ nmap <silent> [G :tabrewind<CR>
 nmap <silent> ]G :tablast<CR>
 nmap <silent> tt :tabnew<CR>
 
+" F-keys
+nnoremap <silent> <F1> :tabfirst<CR>
+nnoremap <silent> <F2> :tabnext 2<CR>
+nnoremap <silent> <F3> :tabnext 3<CR>
+nnoremap <silent> <F4> :tabnext 4<CR>
+nnoremap <silent> <F5> :tabnext 5<CR>
+nnoremap <silent> <F6> :tabnext 6<CR>
+nnoremap <silent> <F7> :tabnext 7<CR>
+nnoremap <silent> <F8> :tabnext 8<CR>
+nnoremap <silent> <F9> :tabnext 9<CR>
+nnoremap <silent> <F10> :tabnext 10<CR>
 
- 
+
 " better navigation
 nnoremap j gj
 nnoremap k gk
@@ -138,7 +150,7 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
 
-" better backspace 
+" better backspace
 " make backspace work from anywhere
 set backspace=indent,eol,start
 " make backspace work in normal mode as expected
@@ -183,7 +195,7 @@ if has("gui_running")
   "au FocusLost * :wa
 
 endif
-  
+
 
 " Lusty Explorer Settings
 map <Leader>r :LustyFilesystemExplorerFromHere <Enter>
@@ -195,7 +207,7 @@ let NERDTreeWinPos="right"
 let g:NERDTreeDirArrows=0
 let g:NERDTreeWinSize = 50
 map <Leader>t :NERDTree <Enter>
-map <Leader>T :NERDTree 
+map <Leader>T :NERDTree
 
 " NERDCommenter Settings
 map <c-\> <plug>NERDCommenterToggle
@@ -217,8 +229,8 @@ map  <leader>"" :AutoCloseOff<cr>
 
 
 
-" Powerline settings
-let g:Powerline_symbols = 'fancy'
+" Airline settings
+"let g:airline_powerline_fonts = 1
 
 " Map ,V to reload the vimrc for that file
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
@@ -237,7 +249,7 @@ if has("autocmd")
 
   " set fugitive buffers to auto delete
   autocmd BufReadPost fugitive://* set bufhidden=delete
-  
+
 endif
 
 " some quick filetype switch mappings
@@ -257,6 +269,10 @@ set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg,tmp/**,coverage/**
 
 " Setup ctags for the project
 nmap <silent> <Leader>rt :!bundle list --paths=true \| xargs ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
+
+
+" remove trailing whitespace
+nnoremap <silent> <F12> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Some aliases for things I commonly type
 abbr rla Rails.logger.ap
