@@ -87,16 +87,16 @@ nmap <silent> ]G :tablast<CR>
 nmap <silent> tt :tabnew<CR>
 
 " F-keys
-nnoremap <silent> <F1> :tabfirst<CR>
-nnoremap <silent> <F2> :tabnext 2<CR>
-nnoremap <silent> <F3> :tabnext 3<CR>
-nnoremap <silent> <F4> :tabnext 4<CR>
-nnoremap <silent> <F5> :tabnext 5<CR>
-nnoremap <silent> <F6> :tabnext 6<CR>
-nnoremap <silent> <F7> :tabnext 7<CR>
-nnoremap <silent> <F8> :tabnext 8<CR>
-nnoremap <silent> <F9> :tabnext 9<CR>
-nnoremap <silent> <F10> :tabnext 10<CR>
+nnoremap <silent> <c-F1> :tabfirst<CR>
+nnoremap <silent> <c-F2> :tabnext 2<CR>
+nnoremap <silent> <c-F3> :tabnext 3<CR>
+nnoremap <silent> <c-F4> :tabnext 4<CR>
+nnoremap <silent> <c-F5> :tabnext 5<CR>
+nnoremap <silent> <c-F6> :tabnext 6<CR>
+nnoremap <silent> <c-F7> :tabnext 7<CR>
+nnoremap <silent> <c-F8> :tabnext 8<CR>
+nnoremap <silent> <c-F9> :tabnext 9<CR>
+nnoremap <silent> <c-F10> :tabnext 10<CR>
 
 
 " better navigation
@@ -172,11 +172,9 @@ inoremap <c-space> <c-x><c-o>
 
 
 set nospell
-set guifont=Menlo:h12.00
+set guifont=Inconsolata-dz\ for\ Powerline:h13.00
 set background=dark
-"colorscheme seoul256
-colorscheme solarized
-let g:solarized_visibility = 'low'
+colorscheme Tomorrow-Night
 
 " Set gp to select the last paste
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text
@@ -192,7 +190,7 @@ map <leader>w :q<cr>
 "some gui specific settings
 if has("gui_running")
   " Auto Save on lost focus
-  "au FocusLost * :wa
+  au FocusLost * :wa
 
 endif
 
@@ -204,10 +202,10 @@ let g:LustyJugglerSuppressRubyWarning = 1
 
 " NERDTree Settings
 let NERDTreeWinPos="right"
-let g:NERDTreeDirArrows=0
+let g:NERDTreeDirArrows=1
 let g:NERDTreeWinSize = 50
-map <Leader>t :NERDTree <Enter>
-map <Leader>T :NERDTree
+map <Leader>t :NERDTreeFind <Enter>
+map <Leader>T :NERDTreeToggle <Enter>
 
 " NERDCommenter Settings
 map <c-\> <plug>NERDCommenterToggle
@@ -230,7 +228,7 @@ map  <leader>"" :AutoCloseOff<cr>
 
 
 " Airline settings
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 
 " Map ,V to reload the vimrc for that file
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
@@ -246,6 +244,9 @@ if has("autocmd")
   au BufRead,BufNewFile Capfile set filetype=ruby
   au BufRead,BufNewFile Guardfile set filetype=ruby
   au BufRead,BufNewFile *.coffee nmap <leader>c :CoffeeCompile<cr>
+  au BufRead,BufNewFile *.md abbr hl [](http://)<ESC>T[i
+  au BufRead,BufNewFile *.md set background=light
+  au BufRead,BufNewFile *.md set wrap linebreak nolist
 
   " set fugitive buffers to auto delete
   autocmd BufReadPost fugitive://* set bufhidden=delete
