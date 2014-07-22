@@ -54,6 +54,7 @@ set splitbelow        " When splitting horizontally, split below
 set scrolloff=8       " Lines visible above/below cursor when scrolling
 set sidescrolloff=5   " Lines visible left/right of cursor when scrolling
 set laststatus=2
+set diffopt=filler,vertical
 
 " Remove Beeping
 set noerrorbells
@@ -116,11 +117,6 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-" paste from system clipboard
-nmap <leader>p "*p
-
-
-
 " Insert a hash rocket with <c-l>
 imap <c-l> <space>=><space>
 imap <c-k> <space>-><space>
@@ -155,12 +151,6 @@ inoremap <s-tab> <c-n>
 set backspace=indent,eol,start
 " make backspace work in normal mode as expected
 nmap <bs> i<bs>
-
-" better arrow keys
-"set t_ku= OA
-"set t_kd= OB
-"set t_kr= OC
-"set t_kl= OD
 
 " Switch to previous buffer
 nmap <silent> g<space> :b#<cr>
@@ -216,7 +206,6 @@ map <leader>s :Gstatus<cr>
 " CtrlP Mappings
 map <leader>f :CtrlP<cr>
 map <leader>b :CtrlPBuffer<cr>
-map <leader>g :CtrlPTag<cr>
 " put the result at the top
 let g:ctrlp_match_window_reversed = 0
 
@@ -225,14 +214,11 @@ let g:ctrlp_match_window_reversed = 0
 map  <leader>" :AutoCloseQuotesOnly<cr>
 map  <leader>"" :AutoCloseOff<cr>
 
-
-
 " Airline settings
 let g:airline_powerline_fonts = 1
 
 " Map ,V to reload the vimrc for that file
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-
 
 " some autocmd stuff :)
 if has("autocmd")
@@ -247,18 +233,12 @@ if has("autocmd")
   au BufRead,BufNewFile *.md abbr hl [](http://)<ESC>T[i
   au BufRead,BufNewFile *.md set background=light
   au BufRead,BufNewFile *.md set wrap linebreak nolist
+  au BufRead,BufNewFile *.emblem set filetype=slim
 
   " set fugitive buffers to auto delete
   autocmd BufReadPost fugitive://* set bufhidden=delete
 
 endif
-
-" some quick filetype switch mappings
-nmap <leader>h :set filetype=html<cr>
-nmap <leader>hh :set filetype=haml<cr>
-nmap <leader>j :set filetype=javascript.javascript-jquery<cr>
-nmap <leader>e :set filetype=eruby.html<cr>
-nmap <leader>m :set filetype=markdown<cr>
 
 
 " Start ack with word under cursor
