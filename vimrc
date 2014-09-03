@@ -233,7 +233,8 @@ if has("autocmd")
   au BufRead,BufNewFile *.md abbr hl [](http://)<ESC>T[i
   au BufRead,BufNewFile *.md set background=light
   au BufRead,BufNewFile *.md set wrap linebreak nolist
-  au BufRead,BufNewFile *.emblem set filetype=slim
+  au BufRead,BufNewFile *.slimbars set filetype=slim
+  au BufRead,BufNewFile *.emblem filetype=slim
 
   " set fugitive buffers to auto delete
   autocmd BufReadPost fugitive://* set bufhidden=delete

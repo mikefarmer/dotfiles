@@ -98,3 +98,6 @@
 [submodule "vim/bundle/vim-ansible-yaml"]
 	path = vim/bundle/vim-ansible-yaml
 	url = git://github.com/chase/vim-ansible-yaml.git
+[submodule "vim/bundle/vim-mustache-handlebars"]
+	path = vim/bundle/vim-mustache-handlebars
+	url = https://github.com/mustache/vim-mustache-handlebars.git
