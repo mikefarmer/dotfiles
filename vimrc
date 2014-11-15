@@ -27,7 +27,7 @@ set nowrap
 set spell
 
 set ts=2 sts=2 sw=2 expandtab
-command! -nargs=* Wrap set wrap linebreak nolist
+"command! -nargs=* Wrap set wrap linebreak nolist
 "
 "" Menus, Completion
 "
@@ -119,7 +119,7 @@ map <leader>n :call RenameFile()<cr>
 
 " Insert a hash rocket with <c-l>
 imap <c-l> <space>=><space>
-imap <c-k> <space>-><space>
+imap <c-k> <space>->
 
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
