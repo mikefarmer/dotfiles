@@ -162,7 +162,7 @@ inoremap <c-space> <c-x><c-o>
 
 
 set nospell
-set guifont=Inconsolata-dz\ for\ Powerline:h13.00
+"set guifont=Inconsolata-dz\ for\ Powerline:h13.00
 set background=dark
 colorscheme Tomorrow-Night
 
@@ -234,7 +234,7 @@ if has("autocmd")
   au BufRead,BufNewFile *.md set background=light
   au BufRead,BufNewFile *.md set wrap linebreak nolist
   au BufRead,BufNewFile *.slimbars set filetype=slim
-  au BufRead,BufNewFile *.emblem filetype=slim
+  au BufRead,BufNewFile *.emblem set filetype=slim
 
   " set fugitive buffers to auto delete
   autocmd BufReadPost fugitive://* set bufhidden=delete
@@ -260,3 +260,8 @@ nnoremap <silent> <F12> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 abbr rla Rails.logger.ap
 abbr rli Rails.logger.info
 abbr rld Rails.logger.debug
+abbr clg console.log
+
+" Syntastic settings
+let g:syntastic_html_tidy_exec = "/usr/local/bin/tidy"
+let g:syntastic_html_tidy_ignore_errors = [ 'trimming empty <i>']
