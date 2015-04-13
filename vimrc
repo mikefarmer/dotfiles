@@ -208,6 +208,8 @@ map <leader>f :CtrlP<cr>
 map <leader>b :CtrlPBuffer<cr>
 " put the result at the top
 let g:ctrlp_match_window_reversed = 0
+" Use only the current working directory
+let g:ctrlp_working_path_mode = ''
 
 
 " Only autoclose quotes
