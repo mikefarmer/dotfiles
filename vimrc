@@ -64,6 +64,9 @@ set t_vb=
 " Faster switching between modes
 set timeoutlen=1000 ttimeoutlen=0
 
+" Because I always type Wa instead of wa
+command! Wa :wa
+
 " Set the Leader
 let mapleader = ","
 
