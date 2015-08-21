@@ -270,3 +270,4 @@ abbr clg console.log
 " Syntastic settings
 let g:syntastic_html_tidy_exec = "/usr/local/bin/tidy"
 let g:syntastic_html_tidy_ignore_errors = [ 'trimming empty <i>']
+let g:syntastic_javascript_checkers = ['jsxhint']
