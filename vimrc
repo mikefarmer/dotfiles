@@ -147,8 +147,8 @@ function! InsertTabWrapper()
         return "\<c-p>"
     endif
 endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
+au FileType ruby inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+au FileType ruby inoremap <s-tab> <c-n>
 
 
 " better backspace
@@ -190,11 +190,6 @@ if has("gui_running")
 endif
 
 
-" Lusty Explorer Settings
-map <Leader>r :LustyFilesystemExplorerFromHere <Enter>
-let g:LustyJugglerSuppressRubyWarning = 1
-
-
 " NERDTree Settings
 let NERDTreeWinPos="right"
 let g:NERDTreeDirArrows=1
@@ -229,8 +224,6 @@ map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloa
 
 " some autocmd stuff :)
 if has("autocmd")
-  " automatically reload vimrc when saved.
-  "au bufwritepost .vimrc source $MYVIMRC
   au BufRead,BufNewFile *.erb set filetype=eruby.html
   au BufRead,BufNewFile *.js set filetype=javascript.javascript-jquery
   au BufRead,BufNewFile Gemfile set filetype=ruby
@@ -252,24 +245,43 @@ endif
 
 
 " Start ack with word under cursor
-nmap <leader>A :Ack --ruby <c-r><c-w>
-vmap <leader>A :<c-u>Ack --ruby <c-r>*
+au FileType ruby nmap <leader>A :Ack --ruby <c-r><c-w>
+au FileType ruby vmap <leader>A :<c-u>Ack --ruby <c-r>*
 
 " Ignore images files in lists
 set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg,tmp/**,coverage/**
 
 " Setup ctags for the project
-nmap <silent> <Leader>rt :!bundle list --paths=true \| xargs ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
+au FileType ruby nmap <silent> <Leader>rt :!bundle list --paths=true \| xargs ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
 
 
 " Some aliases for things I commonly type
-abbr rla Rails.logger.ap
-abbr rli Rails.logger.info
-abbr rld Rails.logger.debug
-abbr clg console.log
+au FileType ruby abbr rla Rails.logger.ap
+au FileType ruby abbr rli Rails.logger.info
+au FileType ruby abbr rld Rails.logger.debug
+au FileType javascript abbr clg console.log
 
 " Syntastic settings
 let g:syntastic_html_tidy_exec = "/usr/local/bin/tidy"
 let g:syntastic_html_tidy_ignore_errors = [ 'trimming empty <i>']
 let g:syntastic_javascript_checkers = ['jsxhint']
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" Go settings
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>g <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>gi <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gr <Plug>(go-rename)
+au FileType go imap <tab> <C-x><C-o>
+au FileType go set ts=4 sts=4 sw=4 expandtab
