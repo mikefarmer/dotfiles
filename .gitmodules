@@ -22,10 +22,6 @@
   path = vim/bundle/gundo
   url = http://github.com/sjl/gundo.vim.git
   ignore = dirty
-[submodule "vim/bundle/lusty"]
-  path = vim/bundle/lusty
-  url = https://github.com/sjbach/lusty.git
-  ignore = dirty
 [submodule "vim/bundle/solarized"]
   path = vim/bundle/solarized
   url = git://github.com/altercation/vim-colors-solarized.git
