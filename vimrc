@@ -15,6 +15,8 @@ set smartindent
 set smarttab
 set hidden
 
+set colorcolumn=100
+
 set ignorecase  " Ignore case in search
 set smartcase   " Except when the search term has an uppercase char
 
@@ -165,9 +167,9 @@ inoremap <c-space> <c-x><c-o>
 
 
 set nospell
-"set guifont=Inconsolata-dz\ for\ Powerline:h13.00
+set guifont=Inconsolata-dz\ for\ Powerline:h13.00
 set background=dark
-colorscheme Tomorrow-Night
+colorscheme solarized
 
 " Set gp to select the last paste
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text
@@ -244,6 +246,8 @@ if has("autocmd")
   " set fugitive buffers to auto delete
   autocmd BufReadPost fugitive://* set bufhidden=delete
 
+  autocmd BufWritePre * StripWhitespace
+
 endif
 
 
@@ -258,9 +262,6 @@ set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg,tmp/**,coverage/**
 nmap <silent> <Leader>rt :!bundle list --paths=true \| xargs ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
 
 
-" remove trailing whitespace
-nnoremap <silent> <F12> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-
 " Some aliases for things I commonly type
 abbr rla Rails.logger.ap
 abbr rli Rails.logger.info
@@ -271,3 +272,4 @@ abbr clg console.log
 let g:syntastic_html_tidy_exec = "/usr/local/bin/tidy"
 let g:syntastic_html_tidy_ignore_errors = [ 'trimming empty <i>']
 let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
