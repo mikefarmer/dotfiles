@@ -4,6 +4,36 @@ set t_Co=256
 set encoding=utf-8
 runtime macros/matchit.vim
 
+call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdcommenter'
+Plug 'mileszs/ack.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-repeat'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'bling/vim-airline'
+Plug 'kchmck/vim-coffee-script'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'slim-template/vim-slim'
+Plug 'chase/vim-ansible-yaml'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'elixir-lang/vim-elixir'
+Plug 'mxw/vim-jsx'
+Plug 'fatih/vim-go'
+Plug 'ngmy/vim-rubocop'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'isRuslan/vim-es6'
+call plug#end()
+
 syntax on
 filetype plugin indent on
 
