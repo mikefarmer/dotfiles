@@ -63,7 +63,8 @@ sk () { cd ~/stukent }
 skb () { cd ~/stukent/borah/borah }
 skbj () { cd ~/stukent/borah/borah/app/assets/javascripts }
 skl () { cd ~/stukent/leatherman/leatherman }
-skd () { cd ~/stukent/diamond }
+skd () { cd ~/stukent/donaldson }
+ske () { cd ~/stukent/elbert }
 skp () { cd ~/stukent/playbooks }
 skg () { cd $GOPATH }
 
@@ -75,3 +76,6 @@ export CPPFLAGS="-I/usr/local/opt/openssl/include"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export NVM_DIR="/Users/mikefarmer/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

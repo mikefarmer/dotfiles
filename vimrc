@@ -4,8 +4,6 @@ set t_Co=256
 set encoding=utf-8
 runtime macros/matchit.vim
 
-" load all plugins
-call pathogen#infect()
 syntax on
 filetype plugin indent on
 
@@ -225,12 +223,11 @@ map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloa
 " some autocmd stuff :)
 if has("autocmd")
   au BufRead,BufNewFile *.erb set filetype=eruby.html
-  au BufRead,BufNewFile *.js set filetype=javascript.javascript-jquery
+  au BufRead,BufNewFile *.js set filetype=javascript
   au BufRead,BufNewFile Gemfile set filetype=ruby
   au BufRead,BufNewFile Capfile set filetype=ruby
   au BufRead,BufNewFile Guardfile set filetype=ruby
   au BufRead,BufNewFile *.coffee nmap <leader>c :CoffeeCompile<cr>
-  au BufRead,BufNewFile *.md abbr hl [](http://)<ESC>T[i
   au BufRead,BufNewFile *.md set background=light
   au BufRead,BufNewFile *.md set wrap linebreak nolist
   au BufRead,BufNewFile *.slimbars set filetype=slim
@@ -245,6 +242,8 @@ endif
 
 
 " Start ack with word under cursor
+nmap <leader>A :Ack <c-r><c-w>
+vmap <leader>A :<c-u>Ack <c-r>*
 au FileType ruby nmap <leader>A :Ack --ruby <c-r><c-w>
 au FileType ruby vmap <leader>A :<c-u>Ack --ruby <c-r>*
 
@@ -260,18 +259,21 @@ au FileType ruby abbr rla Rails.logger.ap
 au FileType ruby abbr rli Rails.logger.info
 au FileType ruby abbr rld Rails.logger.debug
 au FileType javascript abbr clg console.log
+au FileType markdown abbr hl [](http://)<ESC>T[i
 
 " Syntastic settings
 let g:syntastic_html_tidy_exec = "/usr/local/bin/tidy"
 let g:syntastic_html_tidy_ignore_errors = [ 'trimming empty <i>']
-let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:syntastic_always_populate_loc_list = 1
+let g:SOURCEGRAPH_AUTO = "false"
 
 " Go settings
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <silent> <leader>r :wa<cr> <Plug>(go-run)
+au FileType go nmap <silent> <leader>b :wa<cr> <Plug>(go-build)
 au FileType go nmap <leader>g <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
@@ -284,4 +286,5 @@ au FileType go nmap <Leader>gi <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>gr <Plug>(go-rename)
 au FileType go imap <tab> <C-x><C-o>
+au FileType go nnoremap <F2> :GRAPH<CR>
 au FileType go set ts=4 sts=4 sw=4 expandtab
