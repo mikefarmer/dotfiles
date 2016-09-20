@@ -8,7 +8,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-ragtag'
@@ -32,6 +33,7 @@ Plug 'fatih/vim-go'
 Plug 'ngmy/vim-rubocop'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'isRuslan/vim-es6'
+Plug 'metakirby5/codi.vim'
 call plug#end()
 
 syntax on
@@ -231,18 +233,7 @@ map <c-\> <plug>NERDCommenterToggle
 " Fugitive Shortcut for Gstatus
 map <leader>s :Gstatus<cr>
 
-" CtrlP Mappings
-map <leader>f :CtrlP<cr>
-map <leader>b :CtrlPBuffer<cr>
-" put the result at the top
-let g:ctrlp_match_window_reversed = 0
-" Use only the current working directory
-let g:ctrlp_working_path_mode = ''
 
-
-" Only autoclose quotes
-map  <leader>" :AutoCloseQuotesOnly<cr>
-map  <leader>"" :AutoCloseOff<cr>
 
 " Airline settings
 let g:airline_powerline_fonts = 1
@@ -272,10 +263,10 @@ endif
 
 
 " Start ack with word under cursor
-nmap <leader>A :Ack <c-r><c-w>
-vmap <leader>A :<c-u>Ack <c-r>*
-au FileType ruby nmap <leader>A :Ack --ruby <c-r><c-w>
-au FileType ruby vmap <leader>A :<c-u>Ack --ruby <c-r>*
+nmap <leader>A :Ack! <c-r><c-w>
+vmap <leader>A :<c-u>Ack! <c-r>*
+au FileType ruby nmap <leader>A :Ack! --ruby <c-r><c-w>
+au FileType ruby vmap <leader>A :<c-u>Ack! --ruby <c-r>*
 
 " Ignore images files in lists
 set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg,tmp/**,coverage/**
@@ -283,6 +274,24 @@ set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg,tmp/**,coverage/**
 " Setup ctags for the project
 au FileType ruby nmap <silent> <Leader>rt :!bundle list --paths=true \| xargs ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
 
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'right': '~10%' }
+let g:fzf_tags_command = 'ctags -R'
+
+nmap <silent><leader>f :GFiles<CR>
+nmap <silent><leader>b :Buffers<CR>
+nmap <silent>ff :Lines<CR>
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " Some aliases for things I commonly type
 au FileType ruby abbr rla Rails.logger.ap
