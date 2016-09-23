@@ -34,6 +34,7 @@ Plug 'ngmy/vim-rubocop'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'isRuslan/vim-es6'
 Plug 'metakirby5/codi.vim'
+Plug 'trevordmiller/nova-vim'
 call plug#end()
 
 syntax on
@@ -199,7 +200,7 @@ inoremap <c-space> <c-x><c-o>
 set nospell
 set guifont=Inconsolata-dz\ for\ Powerline:h13.00
 set background=dark
-colorscheme solarized
+colorscheme nova
 
 " Set gp to select the last paste
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text
