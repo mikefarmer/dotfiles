@@ -5,7 +5,6 @@ set encoding=utf-8
 runtime macros/matchit.vim
 
 call plug#begin('~/.vim/plugged')
-Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -14,27 +13,25 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
+" Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
-Plug 'kchmck/vim-coffee-script'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'slim-template/vim-slim'
-Plug 'chase/vim-ansible-yaml'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'elixir-lang/vim-elixir'
 Plug 'mxw/vim-jsx'
 Plug 'fatih/vim-go'
-Plug 'ngmy/vim-rubocop'
+" Plug 'ngmy/vim-rubocop'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'isRuslan/vim-es6'
-Plug 'metakirby5/codi.vim'
-Plug 'trevordmiller/nova-vim'
+Plug 'mikefarmer/vim-autoclose'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'kchmck/vim-coffee-script'
 call plug#end()
 
 syntax on
@@ -178,9 +175,8 @@ function! InsertTabWrapper()
         return "\<c-p>"
     endif
 endfunction
-au FileType ruby inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-au FileType ruby inoremap <s-tab> <c-n>
-
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
 
 " better backspace
 " make backspace work from anywhere
@@ -196,11 +192,10 @@ inoremap <c-n>     <c-x><c-n>
 inoremap <c-f>     <c-x><c-f>
 inoremap <c-space> <c-x><c-o>
 
-
 set nospell
 set guifont=Inconsolata-dz\ for\ Powerline:h13.00
 set background=dark
-colorscheme nova
+colorscheme tomorrow-night
 
 " Set gp to select the last paste
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text
@@ -230,11 +225,10 @@ map <Leader>T :NERDTreeToggle <Enter>
 
 " NERDCommenter Settings
 map <c-\> <plug>NERDCommenterToggle
+let g:NERDSpaceDelims = 1
 
 " Fugitive Shortcut for Gstatus
 map <leader>s :Gstatus<cr>
-
-
 
 " Airline settings
 let g:airline_powerline_fonts = 1
@@ -252,6 +246,7 @@ if has("autocmd")
   au BufRead,BufNewFile *.coffee nmap <leader>c :CoffeeCompile<cr>
   au BufRead,BufNewFile *.md set background=light
   au BufRead,BufNewFile *.md set wrap linebreak nolist
+  au BufRead,BufNewFile *.md setlocal textwidth=80
   au BufRead,BufNewFile *.slimbars set filetype=slim
   au BufRead,BufNewFile *.emblem set filetype=slim
 
@@ -283,7 +278,7 @@ let g:fzf_action = {
 
 " Default fzf layout
 " - down / up / left / right
-let g:fzf_layout = { 'right': '~10%' }
+let g:fzf_layout = { 'down': '~20%' }
 let g:fzf_tags_command = 'ctags -R'
 
 nmap <silent><leader>f :GFiles<CR>
@@ -301,30 +296,43 @@ au FileType ruby abbr rld Rails.logger.debug
 au FileType javascript abbr clg console.log
 au FileType markdown abbr hl [](http://)<ESC>T[i
 
+" MUComplete settings
+let g:mucomplete#enable_auto_at_startup = 1
+" inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
+" inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
+" inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
+" set shortmess+=c   " Shut off completion messages
+" set belloff+=ctrlg " If Vim beeps during completion
+
+" one or the other
+" set completeopt+=noinsert
+
 " Syntastic settings
 let g:syntastic_html_tidy_exec = "/usr/local/bin/tidy"
 let g:syntastic_html_tidy_ignore_errors = [ 'trimming empty <i>']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_go_checkers = ['gometalinter']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:syntastic_always_populate_loc_list = 1
-let g:SOURCEGRAPH_AUTO = "false"
 
 " Go settings
-au FileType go nmap <silent> <leader>r :wa<cr> <Plug>(go-run)
+let g:go_auto_type_info = 1
+" let g:go_metalinter_enabled = 1
+let g:go_fmt_command = "goimports"
+set updatetime=100
+au FileType go nmap <silent> <leader>g :wa<cr> <Plug>(go-run)
 au FileType go nmap <silent> <leader>b :wa<cr> <Plug>(go-build)
-au FileType go nmap <leader>g <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <Leader>gi <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>gr <Plug>(go-rename)
-au FileType go imap <tab> <C-x><C-o>
-au FileType go nnoremap <F2> :GRAPH<CR>
-au FileType go set ts=4 sts=4 sw=4 expandtab
+" au FileType go nmap <leader>r <Plug>(go-test)
+" au FileType go nmap <leader>c <Plug>(go-coverage)
+" au FileType go nmap <Leader>d <Plug>(go-def)
+" au FileType go nmap <Leader>ds <Plug>(go-def-split)
+" au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+" au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+" au FileType go nmap <Leader>gd <Plug>(go-doc)
+" au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+" au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+" au FileType go nmap <Leader>gi <Plug>(go-implements)
+" au FileType go nmap <Leader>i <Plug>(go-info)
+" au FileType go nmap <Leader>gr <Plug>(go-rename)
+" au FileType go set ts=4 sts=4 sw=4 expandtab

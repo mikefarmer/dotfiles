@@ -49,8 +49,8 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/Dropbox/Development/Scripts"
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
-export PATH="$PATH:$GOPATH/bin"
 export GOPATH="$HOME/stukent/go"
+export PATH="$PATH:$GOPATH/bin"
 
 alias do-backup='cd /Volumes/Backup/Ongoing\ Backup/ && ./backup.sh'
 alias ra="bin/rake"
@@ -64,9 +64,18 @@ skb () { cd ~/stukent/borah/borah }
 skbj () { cd ~/stukent/borah/borah/app/assets/javascripts }
 skl () { cd ~/stukent/leatherman/leatherman }
 skd () { cd ~/stukent/donaldson }
+skh () { cd ~/stukent/hyndman }
 ske () { cd ~/stukent/elbert }
 skp () { cd ~/stukent/playbooks }
 skg () { cd $GOPATH }
+ska () { cd $GOPATH/src/github.com/stukent/altair }
+
+
+sk_start () { cd ~/stukent/dev_general && goreman start }
+sk_donald () { skd && goreman start }
+sk_borah () { skb && goreman start }
+sk_library () { cd ~/stukent/docker/library && docker-compose up }
+sk_hyndman () { cd ~/stukent/hyndman && docker-compose up }
 
 export EDIT='vim'
 export EDITOR='vim'
@@ -81,3 +90,6 @@ export NVM_DIR="/Users/mikefarmer/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export DRONE_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXh0IjoibWlrZWZhcm1lciIsInR5cGUiOiJ1c2VyIn0.xDMxCXUQWtUjzH3k3ZE68BzxbNd73PdDjHtnj_6MtAo"
+export DRONE_SERVER="https://mon-drone.stukent.com"
