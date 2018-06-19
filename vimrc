@@ -19,14 +19,14 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree'
-" Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'slim-template/vim-slim'
 Plug 'mxw/vim-jsx'
 Plug 'fatih/vim-go'
-" Plug 'ngmy/vim-rubocop'
+Plug 'ngmy/vim-rubocop'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'isRuslan/vim-es6'
 Plug 'mikefarmer/vim-autoclose'
@@ -336,3 +336,11 @@ au FileType go nmap <silent> <leader>b :wa<cr> <Plug>(go-build)
 " au FileType go nmap <Leader>i <Plug>(go-info)
 " au FileType go nmap <Leader>gr <Plug>(go-rename)
 " au FileType go set ts=4 sts=4 sw=4 expandtab
+
+" Rubocop shortcut
+function! RubocopAutocorrect()
+  execute "!rubocop -a " . bufname("%")
+  call SyntasticCheck()
+endfunction
+
+map <silent> <Leader>cop :call RubocopAutocorrect()<cr>
