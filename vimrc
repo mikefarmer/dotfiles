@@ -12,26 +12,25 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-rails'
 " Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'slim-template/vim-slim'
-Plug 'mxw/vim-jsx'
 Plug 'fatih/vim-go'
 Plug 'ngmy/vim-rubocop'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'isRuslan/vim-es6'
 Plug 'mikefarmer/vim-autoclose'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'kchmck/vim-coffee-script'
+Plug 'w0rp/ale'
+Plug 'sheerun/vim-polyglot'
+Plug 'jelera/vim-javascript-syntax'
 call plug#end()
 
 syntax on
@@ -294,6 +293,7 @@ au FileType ruby abbr rla Rails.logger.ap
 au FileType ruby abbr rli Rails.logger.info
 au FileType ruby abbr rld Rails.logger.debug
 au FileType javascript abbr clg console.log
+au FileType javascript abbr asf async () => {<CR>}<ESC>O
 au FileType markdown abbr hl [](http://)<ESC>T[i
 
 " MUComplete settings
@@ -308,13 +308,13 @@ let g:mucomplete#enable_auto_at_startup = 1
 " set completeopt+=noinsert
 
 " Syntastic settings
-let g:syntastic_html_tidy_exec = "/usr/local/bin/tidy"
-let g:syntastic_html_tidy_ignore_errors = [ 'trimming empty <i>']
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-let g:syntastic_go_checkers = ['gometalinter']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_html_tidy_exec = "/usr/local/bin/tidy"
+" let g:syntastic_html_tidy_ignore_errors = [ 'trimming empty <i>']
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+" let g:syntastic_go_checkers = ['gometalinter']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+" let g:syntastic_always_populate_loc_list = 1
 
 " Go settings
 let g:go_auto_type_info = 1
@@ -338,9 +338,24 @@ au FileType go nmap <silent> <leader>b :wa<cr> <Plug>(go-build)
 " au FileType go set ts=4 sts=4 sw=4 expandtab
 
 " Rubocop shortcut
-function! RubocopAutocorrect()
-  execute "!rubocop -a " . bufname("%")
-  call SyntasticCheck()
-endfunction
+" function! RubocopAutocorrect()
+  " execute "!rubocop -a " . bufname("%")
+  " call SyntasticCheck()
+" endfunction
 
-map <silent> <Leader>cop :call RubocopAutocorrect()<cr>
+" map <silent> <Leader>cop :call RubocopAutocorrect()<cr>
+"
+"
+" ALE settings
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\   'javascriptreact': ['prettier', 'eslint'],
+\   'json': ['prettier', 'eslint'],
+\}
+
+" Fix files automatically on save
+let g:ale_fix_on_save = 1
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_highlights = 0

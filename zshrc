@@ -1,95 +1,63 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="mortalscumbag"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Uncomment this to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gitfast brew gem rvm rails osx)
-
-source $ZSH/oh-my-zsh.sh
-
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/Dropbox/Development/Scripts"
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
-export GOPATH="$HOME/stukent/go"
+export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
 
-alias do-backup='cd /Volumes/Backup/Ongoing\ Backup/ && ./backup.sh'
+# alias do-backup='cd /Volumes/Backup/Ongoing\ Backup/ && ./backup.sh'
 alias ra="bin/rake"
 alias rc="bin/rails console"
 alias rr="bin/spring rails"
 alias be="bundle exec"
 alias vi='vim'
+alias dc='docker-compose'
+alias k=kubectl
+alias ytl='yarn test:local'
+alias yl='yarn eslint'
+alias ld='lazydocker'
+alias rapi='yarn db:reset && ./cli.js upsert_client_auth0 1 TYp6LGCOH4EsFm6FSCUCqWbKRud2ThbQ google-oauth2 http://localhost:3000/login/callback Google && ./cli.js generate_canvas_client internal && ./cli.js seed_permissions'
 
-sk () { cd ~/stukent }
-skb () { cd ~/stukent/borah/borah }
-skbj () { cd ~/stukent/borah/borah/app/assets/javascripts }
-skl () { cd ~/stukent/leatherman/leatherman }
-skd () { cd ~/stukent/donaldson }
-skh () { cd ~/stukent/hyndman }
-ske () { cd ~/stukent/elbert }
-skp () { cd ~/stukent/playbooks }
-skg () { cd $GOPATH }
-ska () { cd $GOPATH/src/github.com/stukent/altair }
+am () { cd ~/ambi }
+apin () { cd ~/ambi/ambi-api-next }
+webn () { cd ~/ambi/ambi-web-next }
 
-
-sk_start () { cd ~/stukent/dev_general && goreman start }
-sk_donald () { skd && goreman start }
-sk_borah () { skb && goreman start }
-sk_library () { cd ~/stukent/docker/library && docker-compose up }
-sk_hyndman () { cd ~/stukent/hyndman && docker-compose up }
+# sk () { cd ~/stukent }
+# skb () { cd ~/stukent/borah/borah }
+# skbj () { cd ~/stukent/borah/borah/app/assets/javascripts }
+# skl () { cd ~/stukent/leatherman/leatherman }
+# skd () { cd ~/stukent/donaldson }
+# skh () { cd ~/stukent/hyndman }
+# ske () { cd ~/stukent/elbert }
+# skp () { cd ~/stukent/playbooks }
+# skg () { cd $GOPATH }
+# ska () { cd $GOPATH/src/github.com/stukent/altair }
+#
+#
+# sk_start () { cd ~/stukent/dev_general && goreman start }
+# sk_donald () { skd && goreman start }
+# sk_borah () { skb && goreman start }
+# sk_library () { cd ~/stukent/docker/library && docker-compose up }
+# sk_hyndman () { cd ~/stukent/hyndman && docker-compose up }
 
 export EDIT='vim'
 export EDITOR='vim'
 
-export LDFLAGS="-L/usr/local/opt/openssl/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl/include"
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+#
+# User configuration sourced by interactive shells
+#
 
-export NVM_DIR="/Users/mikefarmer/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# Define zim location
+export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+
+# Start zim
+[[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export DRONE_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXh0IjoibWlrZWZhcm1lciIsInR5cGUiOiJ1c2VyIn0.xDMxCXUQWtUjzH3k3ZE68BzxbNd73PdDjHtnj_6MtAo"
-export DRONE_SERVER="https://mon-drone.stukent.com"
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
