@@ -1,6 +1,6 @@
 [user]
 	name = Mike Farmer
-	email = mike.farmer@gmail.com
+	email = mike.farmer@stukent.com
 [color]
 	status = auto
   diff = auto
@@ -58,3 +58,16 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[core]
+	autocrlf = false
+	excludesfile = /Users/mikefarmer/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[pull]
+	rebase = false
+[commit]
+	template = /Users/mikefarmer/.stCommitMsg

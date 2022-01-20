@@ -12,8 +12,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-ragtag'
-" Plug 'tpope/vim-rails'
-" Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-markdown'
@@ -91,7 +91,7 @@ set visualbell
 set t_vb=
 
 " Faster switching between modes
-set timeoutlen=1000 ttimeoutlen=0
+set timeoutlen=500 ttimeoutlen=0
 
 " Because I always type Wa instead of wa
 command! Wa :wa
@@ -176,6 +176,7 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
+inoremap <tab><tab> <c-x><c-o>
 
 " better backspace
 " make backspace work from anywhere
@@ -187,9 +188,9 @@ nmap <bs> i<bs>
 nmap <silent> g<space> :b#<cr>
 
 " Completion shortcuts
-inoremap <c-n>     <c-x><c-n>
-inoremap <c-f>     <c-x><c-f>
-inoremap <c-space> <c-x><c-o>
+inoremap <c-n> <c-x><c-n>
+inoremap <c-f> <c-x><c-f>
+inoremap <c-o> <c-x><c-o>
 
 set nospell
 set guifont=Inconsolata-dz\ for\ Powerline:h13.00
@@ -307,22 +308,12 @@ let g:mucomplete#enable_auto_at_startup = 1
 " one or the other
 " set completeopt+=noinsert
 
-" Syntastic settings
-" let g:syntastic_html_tidy_exec = "/usr/local/bin/tidy"
-" let g:syntastic_html_tidy_ignore_errors = [ 'trimming empty <i>']
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-" let g:syntastic_go_checkers = ['gometalinter']
-" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-" let g:syntastic_always_populate_loc_list = 1
-
 " Go settings
 let g:go_auto_type_info = 1
-" let g:go_metalinter_enabled = 1
 let g:go_fmt_command = "goimports"
 set updatetime=100
-au FileType go nmap <silent> <leader>g :wa<cr> <Plug>(go-run)
-au FileType go nmap <silent> <leader>b :wa<cr> <Plug>(go-build)
+au FileType go nmap <silent> <leader>G :wa<cr> <Plug>(go-run)
+au FileType go nmap <silent> <leader>B :wa<cr> <Plug>(go-build)
 " au FileType go nmap <leader>r <Plug>(go-test)
 " au FileType go nmap <leader>c <Plug>(go-coverage)
 " au FileType go nmap <Leader>d <Plug>(go-def)
@@ -336,22 +327,30 @@ au FileType go nmap <silent> <leader>b :wa<cr> <Plug>(go-build)
 " au FileType go nmap <Leader>i <Plug>(go-info)
 " au FileType go nmap <Leader>gr <Plug>(go-rename)
 " au FileType go set ts=4 sts=4 sw=4 expandtab
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
-" Rubocop shortcut
-" function! RubocopAutocorrect()
-  " execute "!rubocop -a " . bufname("%")
-  " call SyntasticCheck()
-" endfunction
-
-" map <silent> <Leader>cop :call RubocopAutocorrect()<cr>
-"
-"
 " ALE settings
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'tslint', 'eslint'],
 \   'javascriptreact': ['prettier', 'eslint'],
 \   'json': ['prettier', 'eslint'],
+\   'ruby': ['standardrb', 'rubocop'],
+\}
+
+let g:ale_linters = {
+\   'ruby': ['standardrb', 'rubocop'],
+\   'typescript': ['tslint', 'eslint'],
+\   'go': ['gopls'],
 \}
 
 " Fix files automatically on save
@@ -359,3 +358,10 @@ let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_set_highlights = 0
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
+" let g:ale_open_list = 1
+" let g:ale_keep_list_window_open = 1
+" Use shortcuts for navigating errors
+nmap <silent> [e <Plug>(ale_previous_wrap)
+nmap <silent> ]e <Plug>(ale_next_wrap)
