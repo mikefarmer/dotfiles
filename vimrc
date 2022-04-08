@@ -5,6 +5,7 @@ set encoding=utf-8
 runtime macros/matchit.vim
 
 call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -13,13 +14,12 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
-Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
-Plug 'scrooloose/nerdtree'
-" Plug 'scrooloose/syntastic'
+Plug 'ervandew/supertab'
+Plug 'vim-ruby/vim-ruby'
 Plug 'bling/vim-airline'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
@@ -27,55 +27,42 @@ Plug 'fatih/vim-go'
 Plug 'ngmy/vim-rubocop'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mikefarmer/vim-autoclose'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'jelera/vim-javascript-syntax'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 call plug#end()
 
 syntax on
 filetype plugin indent on
+
+" facepalm because iTerm2 sends the wrong keys
+nnoremap <silent> <ESC>OA <UP>
+nnoremap <silent> <ESC>OB <DOWN>
+nnoremap <silent> <ESC>OC <RIGHT>
+nnoremap <silent> <ESC>OD <LEFT>
+inoremap <silent> <ESC>OA <UP>
+inoremap <silent> <ESC>OB <DOWN>
+inoremap <silent> <ESC>OC <RIGHT>
+inoremap <silent> <ESC>OD <LEFT>
 
 set number
 set autoindent
 set smartindent
 set smarttab
 set hidden
-
 set colorcolumn=100
-
 set ignorecase  " Ignore case in search
 set smartcase   " Except when the search term has an uppercase char
-
 set hlsearch         " Highlight Search
-"set matchtime=4  " ... for .4 seconds
+set matchtime=4  " ... for .4 seconds
 set incsearch " move to that search while typing
-
 set noswf
 set nowrap
-set spell
-
+set nospell
 set ts=2 sts=2 sw=2 expandtab
-"command! -nargs=* Wrap set wrap linebreak nolist
-"
-"" Menus, Completion
-"
-"set infercase  " Try to adjust insert completions for case
-set completeopt=longest,menu  ",menuone
-""               |       |    |
-""               |       |    +-- Show popup even with one match
-""               |       +------- Use popup menu with completions
-""               +--------------- Insert longest completion match
-"
-set wildmenu  " Enable wildmenu for completion
-set wildmode=longest:full,list:full
-""            |            |
-""            |            +-- List matches, complete first match
-""            +--------------- Complete longest prefix, use wildmenu
-"
-"" Buffers, Tabs, Windows
-set complete=.,w,b,t
 
+"command! -nargs=* Wrap set wrap linebreak nolist
 
 "set switchbuf=usetab  " Switch to existing window when switching buffers
 set splitright        " When splitting vertically, split to the right
@@ -91,7 +78,7 @@ set visualbell
 set t_vb=
 
 " Faster switching between modes
-set timeoutlen=500 ttimeoutlen=0
+set timeoutlen=1000 ttimeoutlen=0
 
 " Because I always type Wa instead of wa
 command! Wa :wa
@@ -119,23 +106,10 @@ nmap <silent> [G :tabrewind<CR>
 nmap <silent> ]G :tablast<CR>
 nmap <silent> tt :tabnew<CR>
 
-" F-keys
-nnoremap <silent> <c-F1> :tabfirst<CR>
-nnoremap <silent> <c-F2> :tabnext 2<CR>
-nnoremap <silent> <c-F3> :tabnext 3<CR>
-nnoremap <silent> <c-F4> :tabnext 4<CR>
-nnoremap <silent> <c-F5> :tabnext 5<CR>
-nnoremap <silent> <c-F6> :tabnext 6<CR>
-nnoremap <silent> <c-F7> :tabnext 7<CR>
-nnoremap <silent> <c-F8> :tabnext 8<CR>
-nnoremap <silent> <c-F9> :tabnext 9<CR>
-nnoremap <silent> <c-F10> :tabnext 10<CR>
-
 
 " better navigation
 nnoremap j gj
 nnoremap k gk
-
 
 " RENAME CURRENT FILE
 function! RenameFile()
@@ -162,22 +136,6 @@ endfunction
 call MapCR()
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
-inoremap <tab><tab> <c-x><c-o>
-
 " better backspace
 " make backspace work from anywhere
 set backspace=indent,eol,start
@@ -192,7 +150,6 @@ inoremap <c-n> <c-x><c-n>
 inoremap <c-f> <c-x><c-f>
 inoremap <c-o> <c-x><c-o>
 
-set nospell
 set guifont=Inconsolata-dz\ for\ Powerline:h13.00
 set background=dark
 colorscheme tomorrow-night
@@ -228,10 +185,11 @@ map <c-\> <plug>NERDCommenterToggle
 let g:NERDSpaceDelims = 1
 
 " Fugitive Shortcut for Gstatus
-map <leader>s :Gstatus<cr>
+map <leader>s :Git<cr>
 
 " Airline settings
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#ale#enabled = 1
 
 " Map ,V to reload the vimrc for that file
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
@@ -246,7 +204,7 @@ if has("autocmd")
   au BufRead,BufNewFile *.coffee nmap <leader>c :CoffeeCompile<cr>
   au BufRead,BufNewFile *.md set background=light
   au BufRead,BufNewFile *.md set wrap linebreak nolist
-  au BufRead,BufNewFile *.md setlocal textwidth=80
+  au BufRead,BufNewFile *.md setlocal textwidth=100
   au BufRead,BufNewFile *.slimbars set filetype=slim
   au BufRead,BufNewFile *.emblem set filetype=slim
 
@@ -267,9 +225,6 @@ au FileType ruby vmap <leader>A :<c-u>Ack! --ruby <c-r>*
 " Ignore images files in lists
 set wildignore+=*.gif,*.jpg,*.png,*.tiff,*.jpeg,tmp/**,coverage/**
 
-" Setup ctags for the project
-au FileType ruby nmap <silent> <Leader>rt :!bundle list --paths=true \| xargs ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
-
 " This is the default extra key bindings
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -279,9 +234,10 @@ let g:fzf_action = {
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~20%' }
-let g:fzf_tags_command = 'ctags -R'
+" let g:fzf_tags_command = 'ctags -R'
 
-nmap <silent><leader>f :GFiles<CR>
+nmap <silent><leader>f :Files<CR>
+nmap <silent><leader>F :FZF!<CR>
 nmap <silent><leader>b :Buffers<CR>
 nmap <silent>ff :Lines<CR>
 
@@ -297,8 +253,14 @@ au FileType javascript abbr clg console.log
 au FileType javascript abbr asf async () => {<CR>}<ESC>O
 au FileType markdown abbr hl [](http://)<ESC>T[i
 
-" MUComplete settings
-let g:mucomplete#enable_auto_at_startup = 1
+" quickly run rspec
+au FileType ruby nmap <leader>g :wa\|:silent !echo "bin/rspec %" > test-commands<cr>:redraw!<cr>
+au FileType ruby nmap <leader>G :w\|:silent !echo "bin/rspec spec --fail-fast" > test-commands<cr>:redraw!<cr>
+au FileType ruby nmap <leader>i :wa\|:silent !echo "bundle exec rspec %" > test-commands<cr>:redraw!<cr>
+au FileType ruby nmap <leader>h :wa\|:silent !echo "bin/rails runner %" > test-commands<cr>:redraw!<cr>
+
+"test-commands<cr>:redraw!<cr>MUComplete settings
+" let g:mucomplete#enable_auto_at_startup = 1
 " inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
 " inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
 " inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
@@ -344,11 +306,14 @@ let g:ale_fixers = {
 \   'typescript': ['prettier', 'tslint', 'eslint'],
 \   'javascriptreact': ['prettier', 'eslint'],
 \   'json': ['prettier', 'eslint'],
-\   'ruby': ['standardrb', 'rubocop'],
+\   'ruby': ['prettier', 'rubocop'],
+\   'haml': ['prettier'],
+\   'yml': ['prettier'],
 \}
 
 let g:ale_linters = {
-\   'ruby': ['standardrb', 'rubocop'],
+\   'ruby': ['prettier', 'rubocop'],
+\   'haml': ['prettier'],
 \   'typescript': ['tslint', 'eslint'],
 \   'go': ['gopls'],
 \}

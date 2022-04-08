@@ -82,6 +82,8 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # ------------------
 # Initialize modules
 # ------------------
+#
+export ZIM_HOME=~/.zim
 
 if [[ ${ZIM_HOME}/init.zsh -ot ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
   # Update static initialization script if it's outdated, before sourcing it
@@ -119,28 +121,28 @@ export EDITOR='vim'
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/Dropbox/Development/Scripts"
-export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/11/bin"
-export GOPATH="$HOME/stukent/go"
+# export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/12/bin"
+export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
 
 # alias do-backup='cd /Volumes/Backup/Ongoing\ Backup/ && ./backup.sh'
 alias ra="bin/rake"
 alias rc="bin/rails console"
-alias rr="bin/spring rails"
+alias rsff="rspec spec --fail-fast"
+alias rsa="rspec spec"
 alias be="bundle exec"
 alias vi='vim'
 alias dc='docker-compose'
-alias k=kubectl
-alias ld='lazydocker'
-alias dt='dotnet'
+alias k='kubectl'
 alias guid="uuidgen | tr '[:upper:]' '[:lower:]'"
 alias guidc="uuidgen | tr -d '\n' | tr '[:upper:]' '[:lower:]' | pbcopy && pbpaste && echo"
-alias yt="yarn test --browsers=ChromeHeadless"
 alias vs="code ."
 alias gfa="git fetch --all"
+alias gp="git push"
 
 gitcleanup () {
-  if [ `git branch | grep main` ]
+  git branch | grep main
+  if [ $? -eq 0 ]
   then
     echo "Using main"
     git checkout main
@@ -160,43 +162,26 @@ gitcleanups () {
   git stash pop
 }
 
-checkel () {
-  if (($# == 0));
-  then
-    echo "Usage: checkel [project, ...]"
-  else
-    echo 'Yarn build...'
-    yarn build $@
-    echo 'Yarn lint...'
-    yarn lint $@
-    echo 'Yarn test...'
-    yarn test --no-watch --browsers=ChromeHeadless $@
-  fi
-}
-
-sk () { cd ~/stukent }
-skb () { cd ~/stukent/borah }
-skd () { cd ~/stukent/donaldson }
-ske () { cd ~/stukent/SimulationElements }
-skm () { cd ~/stukent/MimicApp }
-skp () { cd ~/stukent/sk-proxy && ./start && popd }
-skg () { cd $GOPATH }
-ska () { cd $GOPATH/src/github.com/Stukent/altair }
-
-# docker command completions
-# etc=/Applications/Docker.app/Contents/Resources/etc
-# ln -s $etc/docker.zsh-completion /usr/local/share/zsh/site-functions/_docker
-# ln -s $etc/docker-compose.zsh-completion /usr/local/share/zsh/site-functions/_docker-compose
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+#if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# ruby
+eval "$(rbenv init - zsh)"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# postgres
+export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
+
+# node / nvm
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+ob () { cd ~/orbit }
+oba () { cd ~/orbit/orbit-app }
+obc () { cd ~/orbit/orbit-app-current }
+obt () { /bin/bash ~/orbit/run_test_listener.sh }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,6 +1,6 @@
 [user]
 	name = Mike Farmer
-	email = mike.farmer@stukent.com
+	email = mike@orbit.love
 [color]
 	status = auto
   diff = auto
@@ -61,12 +61,6 @@
 [core]
 	autocrlf = false
 	excludesfile = /Users/mikefarmer/.gitignore_global
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [pull]
 	rebase = false
 [commit]
