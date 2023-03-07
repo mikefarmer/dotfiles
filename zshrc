@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 #
 # User configuration sourced by interactive shells
 #
@@ -151,18 +153,16 @@ gitcleanup () {
     git checkout master
   fi
   git pull
+  echo "Running updates..."
+  yarn && bundle && rake db:migrate
+  echo "Stashing all changes"
+  git stash push --include-untracked --message "Automatically stashed"
+  git stash show
+  echo "Cleaning up old branches"
   git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done
   git prune origin
   echo "Finished cleanup"
 }
-
-gitcleanups () {
-  git stash
-  gitcleanup
-  git stash pop
-}
-
-
 
 #if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
@@ -174,14 +174,20 @@ eval "$(rbenv init - zsh)"
 # postgres
 export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
 
-# node / nvm
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 ob () { cd ~/orbit }
 oba () { cd ~/orbit/orbit-app }
 obc () { cd ~/orbit/orbit-app-current }
 obt () { /bin/bash ~/orbit/run_test_listener.sh }
+obas () { oba && mert start orbit }
+obcs () { obc && mert start orbit }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm
+
+# Play nice with M1 Macs
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

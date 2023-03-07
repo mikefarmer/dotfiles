@@ -26,7 +26,7 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'fatih/vim-go'
 Plug 'ngmy/vim-rubocop'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'mikefarmer/vim-autoclose'
+" Plug 'mikefarmer/vim-autoclose'
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'jelera/vim-javascript-syntax'
@@ -150,7 +150,8 @@ inoremap <c-n> <c-x><c-n>
 inoremap <c-f> <c-x><c-f>
 inoremap <c-o> <c-x><c-o>
 
-set guifont=Inconsolata-dz\ for\ Powerline:h13.00
+" set guifont=Inconsolata-dz\ for\ Powerline:h13.00
+set guifont=Victor\ Mono
 set background=dark
 colorscheme tomorrow-night
 
@@ -190,6 +191,10 @@ map <leader>s :Git<cr>
 " Airline settings
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_section_z = airline#section#create(["\uE0A1 " . '%{line(".")}' . ":" . '%{col(".")}'])
+
 
 " Map ,V to reload the vimrc for that file
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
@@ -239,6 +244,7 @@ let g:fzf_layout = { 'down': '~20%' }
 nmap <silent><leader>f :Files<CR>
 nmap <silent><leader>F :FZF!<CR>
 nmap <silent><leader>b :Buffers<CR>
+nmap <silent><leader>bb :History<CR>
 nmap <silent>ff :Lines<CR>
 
 if executable('ag')

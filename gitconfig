@@ -1,6 +1,6 @@
 [user]
-	name = Mike Farmer
-	email = mike@orbit.love
+	name = Michael Farmer
+	email = mike.farmer@gmail.com
 [color]
 	status = auto
   diff = auto
@@ -49,6 +49,7 @@
     la = !git l --all
 [push]
 	default = simple
+	autoSetupRemote = true
 [filter "media"]
 	required = true
 	clean = git media clean %f
